@@ -1473,6 +1473,7 @@
   </footer>
   <!-- Core  -->
   <script src="{{asset('global/vendor/jquery/jquery.js')}}"></script>
+  <script src="{{asset('global/vendor/velocity/velocity.min.js')}}"></script>
   <script src="{{asset('global/vendor/bootstrap/bootstrap.js')}}"></script>
   <script src="{{asset('global/vendor/animsition/animsition.js')}}"></script>
   <script src="{{asset('global/vendor/asscroll/jquery-asScroll.js')}}"></script>
