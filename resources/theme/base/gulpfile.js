@@ -2,6 +2,7 @@ var gulp        = require('gulp');
 var gutil       = require('gulp-util');
 var sequence    = require('run-sequence');
 var notify      = require('gulp-notify');
+var livereload  = require('gulp-livereload');
 
 
 // utils
@@ -104,6 +105,15 @@ gulp.task('dist', function(done){
   });
 });
 
+
+gulp.task('watch', function(done) {
+  livereload.listen();
+
+  gulp.watch('src/js/**/*.js', ['scripts:dev']);
+  gulp.watch('src/less/**/*.less', ['styles:site']);
+
+  notifaker(pumped('I am watching your files!'));
+});
 
 /**
  * Default

@@ -1487,6 +1487,7 @@
   <!-- Scripts -->
   <script src="{{asset('global/js/core.js')}}"></script>
   <script src="{{asset('js/site.js')}}"></script>
+  <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/sections/menu.js')}}"></script>
   <script src="{{asset('js/sections/menubar.js')}}"></script>
   <script src="{{asset('js/sections/gridmenu.js')}}"></script>
