@@ -24,10 +24,12 @@
     "url": "https://forum.getbootstrapadmin.com/remark"
   },
   "license": "Themeforest Standard Licenses",
-  "licenses": [{
-    "type": "Themeforest Standard Licenses",
-    "url": "http://themeforest.net/licenses/standard"
-  }],
+  "licenses": [
+    {
+      "type": "Themeforest Standard Licenses",
+      "url": "http://themeforest.net/licenses/standard"
+    }
+  ],
   "devDependencies": {
     "del": "*",
     "glob": "*",
@@ -65,5 +67,10 @@
     "src/js/**/*.js",
     "src/less/**/*.less",
     "src/skins/**/*.less"
-  ]
+  ],
+  "dependencies": {
+    "express": "^4.13.3",
+    "ioredis": "^1.11.0",
+    "socket.io": "^1.3.7"
+  }
 }

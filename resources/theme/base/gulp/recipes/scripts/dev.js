@@ -3,7 +3,6 @@ var plumber    = require('gulp-plumber');
 var header     = require('gulp-header');
 var uglify     = require('gulp-uglify');
 var rename     = require("gulp-rename");
-var livereload = require("gulp-livereload");
 // var notify     = require('gulp-notify');
 
 // utils
@@ -27,7 +26,6 @@ module.exports = function () {
       extname: '.min.js'
     }))
     .pipe(gulp.dest(config.destination.js))
-    .pipe(livereload());
 
     // .pipe(notify({
     //   message: pumped('JS Generated & Minified!'),

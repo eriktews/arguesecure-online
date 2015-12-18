@@ -5,7 +5,6 @@ var csscomb      = require('gulp-csscomb');
 var minify       = require('gulp-minify-css');
 var rename       = require("gulp-rename");
 var plumber      = require('gulp-plumber');
-var livereload = require("gulp-livereload");
 
 // config
 var config = require('../../../config.json');
@@ -27,5 +26,4 @@ module.exports = function () {
       extname: '.min.css'
     }))
     .pipe(gulp.dest(config.destination.css))
-    .pipe(livereload());
 };

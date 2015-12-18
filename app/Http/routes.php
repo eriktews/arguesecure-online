@@ -10,7 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Events\UserConnected;
+
+Route::get('/test', function() {
+	Event::fire(new UserConnected());
+	return "test";
+});
 
 Route::get('/', function () {
-    return view('layout.master');
+	event(new UserConnected());
+	return view('basic.basic');
 });
