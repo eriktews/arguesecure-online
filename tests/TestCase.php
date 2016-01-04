@@ -7,7 +7,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @var string
      */
-    protected $baseUrl = 'http://localhost';
+    protected $baseUrl = 'http://server.app/arguesecure-online/public';
 
     /**
      * Creates the application.
@@ -21,5 +21,24 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    public function assertHTTPExceptionStatus($expectedStatusCode, Closure $codeThatShouldThrow)
+    {
+        try 
+        {
+            $codeThatShouldThrow($this);
+
+            $this->assertFalse(true, "An HttpException should have been thrown by the provided Closure.");
+        } 
+        catch (\Symfony\Component\HttpKernel\Exception\HttpException $e) 
+        {
+            // assertResponseStatus() won't work because the response object is null
+            $this->assertEquals(
+                $expectedStatusCode,
+                $e->getStatusCode(),
+                sprintf("Expected an HTTP status of %d but got %d.", $expectedStatusCode, $e->getStatusCode())
+            );
+        }
     }
 }

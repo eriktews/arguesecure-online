@@ -12,21 +12,12 @@
 */
 use App\Events\UserConnected;
 
-Route::get('/test', function() {
-	Event::fire(new UserConnected());
-	return "test";
-});
-
-Route::get('/', function () {
-	event(new UserConnected());
-	return view('basic.basic');
-});
-
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 Route::get('home', function () {
-	event(new UserConnected());
+	
+	event(new UserConnected(\App\User::first()));
 	return view('basic.basic');
 });
