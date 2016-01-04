@@ -19,7 +19,7 @@ $(window).on('beforeunload', function(){
 socket.on('connect', function() {
 	$('body').append('<p>connected...</p>');
 });
-socket.on("argue:App\\Events\\UserConnected", function(message){
+socket.on("argue:App\\Events\\UserEvents\\UserConnected", function(message){
 	console.log('a user has entered this channel -using a nice MESSAGE');
 	console.log(message);
     $('body').append('New user');

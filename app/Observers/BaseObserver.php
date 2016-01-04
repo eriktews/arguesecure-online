@@ -15,9 +15,13 @@ abstract class BaseObserver
         //
     }
 
+    /**
+     * Only Authenticated users are allowed to save a model
+     * @param  [Model] $model The Model which will be saved
+     */
     public function saving($model) 
     {
-        $this->checks();
+        $this->isAuth();
     }
 
     public function saved($model)
@@ -25,9 +29,26 @@ abstract class BaseObserver
         //
     }
 
-    protected function checks()
+    public function deleting($model)
+    {        
+        $this->isAuth();
+        $this->modelIsOwnedByUser($model);
+    }
+
+    /**
+     * Check if user is authenticated
+     */
+    protected function isAuth()
     {
         if ( !Auth::check() ) return abort('401');
+    }
+
+    /**
+     * Check if Model is owned by the currently authenticated user
+     */
+    protected function modelIsOwnedByUser($model)
+    {
+        if ( $model->user && (Auth::user()->id !== $model->user->id) ) return abort('401');
     }
 	
 }
