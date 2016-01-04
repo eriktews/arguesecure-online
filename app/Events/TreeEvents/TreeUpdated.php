@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\TreeEvents;
 
 use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserConnected extends Event implements ShouldBroadcast
+class TreeUpdated extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
-    public $data;
+    public $tree;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\Tree $tree)
     {
-        return $this->data = ['test'=>'20'];
+        return $this->tree = $tree;
     }
 
     /**
