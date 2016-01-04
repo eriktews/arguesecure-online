@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTreesTable extends Migration
+class CreateRisksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,14 @@ class CreateTreesTable extends Migration
      */
     public function up()
     {
-        Schema::create('trees', function (Blueprint $table) {
+        Schema::create('risks', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('name');
+            $table->text('text');
 
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->boolean('is_public');
+            $table->integer('tree_id')->unsigned()->nullable();
+            $table->foreign('tree_id')->references('id')->on('trees')->onDelete('cascade');
 
             $table->boolean('locked');
 
@@ -38,6 +37,6 @@ class CreateTreesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('trees');
+        Schema::drop('risks');
     }
 }

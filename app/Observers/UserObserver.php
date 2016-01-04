@@ -1,39 +1,23 @@
 <?php namespace App\Observers;
 
-use Auth;
-
 use App\Events\TreeEvents;
 
 class UserObserver extends BaseObserver
 {
 
-	public function creating($tree)
+    public function saving($model) 
     {
         //
     }
 
-    public function updating($tree)
+    public function deleting($user)
     {
-        //
+        parent::deleting($user);
+
+        foreach ($user->trees as $tree)
+        {
+            $tree->delete();
+        }
     }
 
-    public function saving($tree)
-    {
-       //
-    }
-
-    public function saved($tree)
-    {
-        //
-    }
-
-    public function deleting($tree)
-    {
-        parent::deleting($tree);
-
-        //Add Tree removal
-    }
-
-
-	
 }

@@ -1,11 +1,17 @@
 <?php namespace App\Observers;
 
 use Auth;
+use Schema;
 
 abstract class BaseObserver 
 {
 
 	public function creating($model)
+    {
+        //
+    }
+
+    public function created($model)
     {
         //
     }
@@ -17,7 +23,6 @@ abstract class BaseObserver
 
     /**
      * Only Authenticated users are allowed to save a model
-     * @param  [Model] $model The Model which will be saved
      */
     public function saving($model) 
     {
@@ -48,7 +53,7 @@ abstract class BaseObserver
      */
     protected function modelIsOwnedByUser($model)
     {
-        if ( $model->user && (Auth::user()->id !== $model->user->id) ) return abort('401');
+        if ( Schema::hasColumn($model->getTable(), 'user_id') && $model->user && (Auth::user()->id !== $model->user->id) ) return abort('401');
     }
 	
 }

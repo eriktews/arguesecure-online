@@ -27,4 +27,14 @@ class Tree extends Model
     	return $this->belongsTo('\App\User','updated_by');
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('\App\Category');
+    }
+
+    public function risks()
+    {
+        return $this->hasMany('\App\Risk');
+    }
+
 }

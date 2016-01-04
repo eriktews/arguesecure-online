@@ -40,6 +40,13 @@ class TreeEventTest extends TestCase
         $this->assertEquals($tree->updatedBy->id, $editing_user->id);
     }
 
+    /**
+     * @expectedException \Symfony\Component\HttpKernel\Exception\HttpException
+     */
+    public function testTreeWithoutAuth()
+    {        
+        $tree = factory(App\Tree::class)->create();
+    }
    
     public function testTreeDelete()
     {
@@ -73,13 +80,22 @@ class TreeEventTest extends TestCase
         $tree->delete(); 
     }
 
-    /**
-     * @expectedException \Symfony\Component\HttpKernel\Exception\HttpException
-     */
-    public function testTreeWithoutAuth()
-    {        
-        $tree = factory(App\Tree::class)->create();
-    }
+    public function testTreeDeletesRisks()
+    {
+        $owner = factory(App\User::class)->create();
 
+        $this->be($owner);
+
+        $tree = factory(App\Tree::class)->create();
+        $tree_id = $tree->id;
+
+        $risk = factory(App\Risk::class)->create();
+        $risk->tree()->associate($tree->id);
+
+        $tree->delete();
+
+        $this->assertEquals(\App\Risk::where('tree_id','=',$tree_id)->get()->count(),0);
+
+    }
 
 }

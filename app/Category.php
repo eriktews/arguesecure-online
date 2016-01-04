@@ -10,6 +10,10 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
+    /**
+     * Relationships
+     */
+
     public function trees()
     {
     	return $this->belongsToMany('\App\Tree');

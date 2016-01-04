@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Events\TreeEvents;
+namespace App\Events\RiskEvents;
 
 use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TreeDeleted extends Event implements ShouldBroadcast
+class RiskSaved extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
-    public $tree;
+    public $Risk;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Tree $tree)
+    public function __construct(\App\Risk $Risk)
     {
-        $this->tree = $tree;
+        $this->Risk = $Risk;
     }
 
     /**
