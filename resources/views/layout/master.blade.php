@@ -4,11 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <meta name="description" content="bootstrap admin template">
+  <meta name="description" content="Argue Secure">
   <meta name="author" content="">
   <title>Argue Secure - @yield('title')</title>
-  <link rel="apple-touch-icon" href="../../assets/images/apple-touch-icon.png">
-  <link rel="shortcut icon" href="../../assets/images/favicon.ico">
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/bootstrap-extend.min.css')}}">
@@ -26,11 +24,11 @@
   <link rel="stylesheet" href="{{asset('fonts/brand-icons/brand-icons.min.css')}}">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
   <!--[if lt IE 9]>
-    <script src="{{asset('global/vendor/html5shiv/html5shiv.min.js')}}"></script>
+    <script src="{{asset('vendor/html5shiv/html5shiv.min.js')}}"></script>
     <![endif]-->
   <!--[if lt IE 10]>
-    <script src="{{asset('global/vendor/media-match/media.match.min.js')}}"></script>
-    <script src="{{asset('global/vendor/respond/respond.min.js')}}"></script>
+    <script src="{{asset('vendor/media-match/media.match.min.js')}}"></script>
+    <script src="{{asset('vendor/respond/respond.min.js')}}"></script>
     <![endif]-->
   <!-- Scripts -->
   <script src="{{asset('vendor/modernizr/modernizr.js')}}"></script>
@@ -56,7 +54,7 @@
       </button>
       <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
         <img class="navbar-brand-logo" src="../../assets/images/logo.png" title="Remark">
-        <span class="navbar-brand-text"> Remark</span>
+        <span class="navbar-brand-text">Argue Secure</span>
       </div>
       <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
       data-toggle="collapse">
@@ -82,26 +80,20 @@
               <span class="sr-only">Toggle fullscreen</span>
             </a>
           </li>
-          <li class="hidden-float">
-            <a class="icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
-            role="button">
-              <span class="sr-only">Toggle Search</span>
-            </a>
-          </li>
           <li class="dropdown dropdown-fw dropdown-mega">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"
-            data-animation="fade" role="button">Mega <i class="icon wb-chevron-down-mini" aria-hidden="true"></i></a>
+            data-animation="fade" role="button">Menu <i class="icon wb-chevron-down-mini" aria-hidden="true"></i></a>
             <ul class="dropdown-menu" role="menu">
               <li role="presentation">
                 <div class="mega-content">
                   <div class="row">
                     <div class="col-sm-4">
-                      <h5>UI Kit</h5>
+                      <h5>Trees</h5>
                       <ul class="blocks-2">
                         <li class="mega-menu margin-0">
                           <ul class="list-icons">
                             <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a href="../advanced/animation.html">Animation</a>
+                              <a href="../advanced/animation.html">Tree2s12</a>
                             </li>
                             <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
                               <a href="../uikit/buttons.html">Buttons</a>
@@ -284,30 +276,6 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a class="navbar-avatar dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"
-            data-animation="scale-up" role="button">
-              <span class="avatar avatar-online">
-                <img src="../../../global/portraits/5.jpg" alt="...">
-                <i></i>
-              </span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li role="presentation">
-                <a href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
-              </li>
-              <li role="presentation">
-                <a href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
-              </li>
-              <li role="presentation">
-                <a href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
-              </li>
-              <li class="divider" role="presentation"></li>
-              <li role="presentation">
-                <a href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
-              </li>
-            </ul>
-          </li>
-          <li class="dropdown">
             <a data-toggle="dropdown" href="javascript:void(0)" title="Notifications" aria-expanded="false"
             data-animation="scale-up" role="button">
               <i class="icon wb-bell" aria-hidden="true"></i>
@@ -482,31 +450,36 @@
                     See all messages
                   </a>
               </li>
+              <li class="dropdown">
+                <a class="navbar-avatar dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"
+                data-animation="scale-up" role="button">
+                  <span class="avatar avatar-online">
+                    <img src="../../../global/portraits/5.jpg" alt="...">
+                    <i></i>
+                  </span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation">
+                    <a href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
+                  </li>
+                  <li class="divider" role="presentation"></li>
+                  <li role="presentation">
+                    <a href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
-          </li>
-          <li id="toggleChat">
-            <a data-toggle="site-sidebar" href="javascript:void(0)" title="Chat" data-url="../site-sidebar.tpl">
-              <i class="icon wb-chat" aria-hidden="true"></i>
-            </a>
           </li>
         </ul>
         <!-- End Navbar Toolbar Right -->
       </div>
       <!-- End Navbar Collapse -->
-      <!-- Site Navbar Seach -->
-      <div class="collapse navbar-search-overlap" id="site-navbar-search">
-        <form role="search">
-          <div class="form-group">
-            <div class="input-search">
-              <i class="input-search-icon wb-search" aria-hidden="true"></i>
-              <input type="text" class="form-control" name="site-search" placeholder="Search...">
-              <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
-              data-toggle="collapse" aria-label="Close"></button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <!-- End Site Navbar Seach -->
     </div>
   </nav>
   <div class="site-menubar">
