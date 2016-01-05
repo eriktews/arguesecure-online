@@ -20,3 +20,7 @@ Route::get('home', function () {
 	event(new UserConnected(\App\User::first()));
 	return view('basic.basic');
 });
+
+Route::get('/', function() {
+	return view('layout.master');
+});

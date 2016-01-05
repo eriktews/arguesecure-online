@@ -12,7 +12,7 @@ ARGUE SECURE
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
 <script>
-var socket = io('http://192.168.33.10:3002');
+var socket = io('http://192.168.10.10:3002');
 $(window).on('beforeunload', function(){
     socket.close();
 });	

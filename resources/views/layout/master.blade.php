@@ -10,16 +10,17 @@
   <link rel="apple-touch-icon" href="../../assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="../../assets/images/favicon.ico">
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="{{asset('global/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{asset('global/css/bootstrap-extend.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/bootstrap-extend.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/site.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <!-- Plugins -->
-  <link rel="stylesheet" href="{{asset('global/vendor/animsition/animsition.css')}}">
-  <link rel="stylesheet" href="{{asset('global/vendor/asscrollable/asScrollable.css')}}">
-  <link rel="stylesheet" href="{{asset('global/vendor/switchery/switchery.css')}}">
-  <link rel="stylesheet" href="{{asset('global/vendor/intro-js/introjs.css')}}">
-  <link rel="stylesheet" href="{{asset('global/vendor/slidepanel/slidePanel.css')}}">
-  <link rel="stylesheet" href="{{asset('global/vendor/flag-icon-css/flag-icon.css')}}">
+  <link rel="stylesheet" href="{{asset('vendor/animsition/animsition.css')}}">
+  <link rel="stylesheet" href="{{asset('vendor/asscrollable/asScrollable.css')}}">
+  <link rel="stylesheet" href="{{asset('vendor/switchery/switchery.css')}}">
+  <link rel="stylesheet" href="{{asset('vendor/intro-js/introjs.css')}}">
+  <link rel="stylesheet" href="{{asset('vendor/slidepanel/slidePanel.css')}}">
+  <link rel="stylesheet" href="{{asset('vendor/flag-icon-css/flag-icon.css')}}">
   <!-- Fonts -->
   <link rel="stylesheet" href="{{asset('fonts/web-icons/web-icons.min.css')}}">
   <link rel="stylesheet" href="{{asset('fonts/brand-icons/brand-icons.min.css')}}">
@@ -32,8 +33,8 @@
     <script src="{{asset('global/vendor/respond/respond.min.js')}}"></script>
     <![endif]-->
   <!-- Scripts -->
-  <script src="{{asset('global/vendor/modernizr/modernizr.js')}}"></script>
-  <script src="{{asset('global/vendor/breakpoints/breakpoints.js')}}"></script>
+  <script src="{{asset('vendor/modernizr/modernizr.js')}}"></script>
+  <script src="{{asset('vendor/breakpoints/breakpoints.js')}}"></script>
   <script>
   Breakpoints();
   </script>
@@ -1472,33 +1473,34 @@
     </div>
   </footer>
   <!-- Core  -->
-  <script src="{{asset('global/vendor/jquery/jquery.js')}}"></script>
-  <script src="{{asset('global/vendor/velocity/velocity.min.js')}}"></script>
-  <script src="{{asset('global/vendor/bootstrap/bootstrap.js')}}"></script>
-  <script src="{{asset('global/vendor/animsition/animsition.js')}}"></script>
-  <script src="{{asset('global/vendor/asscroll/jquery-asScroll.js')}}"></script>
-  <script src="{{asset('global/vendor/mousewheel/jquery.mousewheel.js')}}"></script>
-  <script src="{{asset('global/vendor/asscrollable/jquery.asScrollable.all.js')}}"></script>
-  <script src="{{asset('global/vendor/ashoverscroll/jquery-asHoverScroll.js')}}"></script>
+  <script src="{{asset('vendor/jquery/jquery.js')}}"></script>
+  <script src="{{asset('vendor/velocity/velocity.min.js')}}"></script>
+  <script src="{{asset('vendor/bootstrap/bootstrap.js')}}"></script>
+  <script src="{{asset('vendor/animsition/animsition.js')}}"></script>
+  <script src="{{asset('vendor/asscroll/jquery-asScroll.js')}}"></script>
+  <script src="{{asset('vendor/mousewheel/jquery.mousewheel.js')}}"></script>
+  <script src="{{asset('vendor/asscrollable/jquery.asScrollable.all.js')}}"></script>
+  <script src="{{asset('vendor/ashoverscroll/jquery-asHoverScroll.js')}}"></script>
   <!-- Plugins -->
-  <script src="{{asset('global/vendor/switchery/switchery.min.js')}}"></script>
-  <script src="{{asset('global/vendor/intro-js/intro.js')}}"></script>
-  <script src="{{asset('global/vendor/screenfull/screenfull.js')}}"></script>
-  <script src="{{asset('global/vendor/slidepanel/jquery-slidePanel.js')}}"></script>
+  <script src="{{asset('vendor/switchery/switchery.min.js')}}"></script>
+  <script src="{{asset('vendor/intro-js/intro.js')}}"></script>
+  <script src="{{asset('vendor/screenfull/screenfull.js')}}"></script>
+  <script src="{{asset('vendor/slidepanel/jquery-slidePanel.js')}}"></script>
   <!-- Scripts -->
-  <script src="{{asset('global/js/core.js')}}"></script>
+  <script src="{{asset('js/core.js')}}"></script>
   <script src="{{asset('js/site.js')}}"></script>
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/sections/menu.js')}}"></script>
   <script src="{{asset('js/sections/menubar.js')}}"></script>
   <script src="{{asset('js/sections/gridmenu.js')}}"></script>
   <script src="{{asset('js/sections/sidebar.js')}}"></script>
-  <script src="{{asset('global/js/configs/config-colors.js')}}"></script>
+  <script src="{{asset('js/configs/config-colors.js')}}"></script>
   <script src="{{asset('js/configs/config-tour.js')}}"></script>
-  <script src="{{asset('global/js/components/asscrollable.js')}}"></script>
-  <script src="{{asset('global/js/components/animsition.js')}}"></script>
-  <script src="{{asset('global/js/components/slidepanel.js')}}"></script>
-  <script src="{{asset('global/js/components/switchery.js')}}"></script>
+  <script src="{{asset('js/components/asscrollable.js')}}"></script>
+  <script src="{{asset('js/components/animsition.js')}}"></script>
+  <script src="{{asset('js/components/slidepanel.js')}}"></script>
+  <script src="{{asset('js/components/switchery.js')}}"></script>
+  <script src="{{asset('js/arsec.js')}}"></script>
   <script>
   (function(document, window, $) {
     'use strict';
@@ -1508,5 +1510,7 @@
     });
   })(document, window, jQuery);
   </script>
+  <script src="../assets/examples/js/dashboard/v1.js"></script>
+  
 </body>
 </html>
