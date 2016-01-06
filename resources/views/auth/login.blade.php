@@ -30,7 +30,7 @@ login-page layout-full
                 </div>
                 @endif
 
-                <form method="POST" action="{{ url('auth/login') }}">
+                <form method="POST" action="{{ url('login') }}">
                     {!! csrf_field() !!}
                     <div class="form-group form-material floating">
                         <input class="form-control" type="email" name="email" value="{{ old('email') }}">

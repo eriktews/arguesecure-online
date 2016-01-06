@@ -17,9 +17,9 @@ use App\Events\TreeEvents\TreeCreated;
  * Authentication and register routes
  */
 
-Route::get('auth/login', ['as' => 'login' , 'uses' => 'Auth\AuthController@getLogin']);
-Route::post('auth/login', ['as' => 'login-post', 'uses' => 'Auth\AuthController@postLogin']);
-Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+Route::get('login', ['as' => 'login' , 'uses' => 'Auth\AuthController@getLogin']);
+Route::post('login', ['as' => 'login-post', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 /**
  * With Auth Middleware
@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-Route::get('home', function () {
+Route::get('test', function () {
 	$tree = new \App\Tree;
 	$tree->name = "test tree";
 	$tree->save();
