@@ -79,7 +79,9 @@
   <script src="{{asset('js/components/material.js')}}"></script>
   <script src="{{asset('js/components/jquery-placeholder.js')}}"></script>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+  @if (Auth::check())
   <script src="{{asset('js/arsec.js')}}"></script>
+  @endif
   <script>
   (function(document, window, $) {
     'use strict';

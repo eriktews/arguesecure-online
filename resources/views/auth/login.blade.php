@@ -4,6 +4,8 @@
 login-page layout-full
 @endsection
 
+@section('title','Login')
+
 @section('page')
 
 <div class="page animsition vertical-align text-center">
