@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\UserEvents\UserConnected;
 use App\User;
 
-class AuthLoginEventHandler
+class AuthLogoutEventHandler
 {
     /**
      * Create the event handler.
@@ -25,9 +25,8 @@ class AuthLoginEventHandler
      * @param  Events  $event
      * @return void
      */
-    public function handle(User $user, $remember)
+    public function handle(User $user)
     {
-        debug($user);
-        event(new UserConnected($user));
+        // event(new UserDisonnected($user));
     }
 }

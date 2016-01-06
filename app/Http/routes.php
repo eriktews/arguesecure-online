@@ -10,17 +10,30 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-use App\Events\UserEvents\UserConnected;
 
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+use App\Events\TreeEvents\TreeCreated;
 
-Route::get('home', function () {
-	event(new UserConnected(\App\User::first()));
-	return view('basic.basic');
+/**
+ * Authentication and register routes
+ */
+
+Route::get('auth/login', ['as' => 'login' , 'uses' => 'Auth\AuthController@getLogin']);
+Route::post('auth/login', ['as' => 'login-post', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+
+/**
+ * With Auth Middleware
+ */
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+		return view('home');
+    });
 });
 
-Route::get('/', function() {
-	return view('layout.master');
+Route::get('home', function () {
+	$tree = new \App\Tree;
+	$tree->name = "test tree";
+	$tree->save();
+	$tree->delete();
+	return 'event Fired';
 });
