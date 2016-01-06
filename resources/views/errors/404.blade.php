@@ -1,10 +1,10 @@
-@extends('layout.basic')
+@extends('layout.master')
 
 @section('body_class')
-error
+error-page layout-full
 @endsection
 
-@section('title','Maintance')
+@section('title','Error')
 
 @section('page')
 
@@ -18,7 +18,7 @@ error
                     <h2 class="brand-text font-size-18">Argue Secure</h2>
                 </div>
 
-                <p>Our robots are hard at work performing maintenance operations.</p>
+                <p>Page not found</p>
             </div>
         </div>
     </div>
