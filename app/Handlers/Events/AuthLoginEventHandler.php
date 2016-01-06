@@ -27,7 +27,6 @@ class AuthLoginEventHandler
      */
     public function handle(User $user, $remember)
     {
-        debug($user);
         event(new UserConnected($user));
     }
 }

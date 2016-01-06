@@ -4,7 +4,7 @@ namespace App\Handlers\Events;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Events\UserEvents\UserConnected;
+use App\Events\UserEvents\UserDisconnected;
 use App\User;
 
 class AuthLogoutEventHandler
@@ -27,6 +27,6 @@ class AuthLogoutEventHandler
      */
     public function handle(User $user)
     {
-        // event(new UserDisonnected($user));
+        event(new UserDisconnected($user));
     }
 }
