@@ -18,7 +18,7 @@ error-page layout-full
                     <h2 class="brand-text font-size-18">Argue Secure</h2>
                 </div>
 
-                <p>The item you requeste was not found :(</p>
+                <p>We are still arguing over the error message</p>
             </div>
         </div>
     </div>

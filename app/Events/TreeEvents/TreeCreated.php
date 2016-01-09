@@ -31,4 +31,16 @@ class TreeCreated extends Event implements ShouldBroadcast
     {
         return ['argue'];
     }
+
+    /**
+     * Get the data to broadcast.
+     *
+     * @return array
+     */
+    public function broadcastWith()
+    {
+        return [
+            'tree' => $this->tree->load('user')
+        ];
+    }
 }

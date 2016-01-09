@@ -1,6 +1,5 @@
 <?php namespace App\Observers;
 
-use Auth;
 use Schema;
 
 abstract class BaseObserver 
@@ -45,7 +44,7 @@ abstract class BaseObserver
      */
     protected function isAuth()
     {
-        if ( !Auth::check() ) return abort('401');
+        if ( ! auth()->check() ) return abort('403');
     }
 
     /**
@@ -53,7 +52,7 @@ abstract class BaseObserver
      */
     protected function modelIsOwnedByUser($model)
     {
-        if ( Schema::hasColumn($model->getTable(), 'user_id') && $model->user && (Auth::user()->id !== $model->user->id) ) return abort('401');
+        if ( Schema::hasColumn($model->getTable(), 'user_id') && $model->user && ( auth()->user()->id !== $model->user->id) ) return abort('403');
     }
 	
 }

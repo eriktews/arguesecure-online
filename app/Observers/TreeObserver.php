@@ -1,7 +1,5 @@
 <?php namespace App\Observers;
 
-use Auth;
-
 use App\Events\TreeEvents;
 
 class TreeObserver extends BaseObserver
@@ -11,14 +9,15 @@ class TreeObserver extends BaseObserver
     {
         parent::creating($tree);
 
-        $tree->user_id = Auth::user()->id;
+        $tree->user_id = auth()->user()->id;
     }
 
     public function created($tree)
     {
         parent::created($tree);
-        
-        event(new TreeEvents\TreeCreated($tree));
+
+        if ($tree->public)
+            event(new TreeEvents\TreeCreated($tree));
     }
 
     public function updating($tree)
@@ -30,14 +29,18 @@ class TreeObserver extends BaseObserver
     {
         parent::saving($tree);
 
-        $tree->updatedBy()->associate(Auth::user()->id);
+        $tree->updatedBy()->associate(auth()->user()->id);
+
+        $tree->lock = time();
     }
 
     public function saved($tree)
     {
         parent::saved($tree);
 
-        event(new TreeEvents\TreeSaved($tree));
+        //If public or was public
+        if ( $tree->getOriginal('public',0) || $tree->public)
+            event(new TreeEvents\TreeSaved($tree));
     }
 
     public function deleting($tree)
@@ -47,9 +50,10 @@ class TreeObserver extends BaseObserver
         foreach($tree->risks as $risk)
         {
             $risk->delete();
-        }
+        }        
 
-        event(new TreeEvents\TreeDeleted($tree));
+        if ($tree->public)
+            event(new TreeEvents\TreeDeleted($tree));        
     }
 
 

@@ -26,10 +26,10 @@ io.on('connection', function (socket) {
  
   socket.on('disconnect', function() {
   	console.log('client disconnected');
-    
+
     redis.quit();
   });
- 
+
 });
 
 http.listen(port, function(){

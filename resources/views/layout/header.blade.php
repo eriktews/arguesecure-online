@@ -28,34 +28,8 @@ data-toggle="collapse">
           <span class="sr-only">Toggle fullscreen</span>
         </a>
       </li>
-      <li class="dropdown dropdown-fw dropdown-mega">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"
-        data-animation="fade" role="button">Menu <i class="icon wb-chevron-down-mini" aria-hidden="true"></i></a>
-        <ul class="dropdown-menu" role="menu">
-          <li role="presentation">
-            <div class="mega-content">
-              <div class="row">
-                <div class="col-sm-4">
-                  <h5>Trees</h5>
-                  @if (!$header_tree_list->isEmpty())
-                  <ul class="blocks-2">
-                    @foreach($header_tree_list as $tree)
-                    <li class="mega-menu margin-0">
-                      <ul class="list-icons">
-                        <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                          <a href="">{{$tree->name}}</a>
-                        </li>
-                      </ul>
-                    </li>
-                    @endforeach
-                  </ul>
-                  @endif
-                  <a href="">Create a tree</a>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+      <li>
+        <a href="{{route('tree.index')}}">Trees</a>
       </li>
     </ul>
     <!-- End Navbar Toolbar -->

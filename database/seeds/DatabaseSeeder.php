@@ -38,9 +38,25 @@ class UserTableSeeder extends Seeder {
         Auth::attempt(['email'=>'admin@arsec.com','password'=>'password']);
 
         App\Tree::create([
-            'name' => 'new tree',
+            'title' => 'new tree',
+            'description' => 'TinyDescription',
             'user_id' => $user->id,
             'updated_by' => $user->id
+        ]);
+
+        App\Tree::create([
+            'title' => 'new tree2',
+            'description' => 'TinyDescription 2',
+            'user_id' => $user->id,
+            'updated_by' => $user->id
+        ]);
+
+        $user2 = App\User::create([
+            'name' => 'John Doe',
+            'email' => 'nimda@arsec.com',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now(),
+            'password' => bcrypt('password'),
         ]);
     }
 

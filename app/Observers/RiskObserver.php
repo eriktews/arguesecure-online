@@ -1,7 +1,5 @@
 <?php namespace App\Observers;
 
-use Auth;
-
 use App\Events\RiskEvents;
 
 class RiskObserver extends BaseObserver
@@ -28,7 +26,7 @@ class RiskObserver extends BaseObserver
     {
         parent::saving($risk);
 
-        $risk->updatedBy()->associate(Auth::user()->id);
+        $risk->updatedBy()->associate(auth()->user()->id);
     }
 
     public function saved($risk)

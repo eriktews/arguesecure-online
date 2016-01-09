@@ -11,7 +11,7 @@ login-page layout-full
 <div class="page animsition vertical-align text-center">
 
     <div class="page-content vertical-align-middle">
-        <div class="panel">
+        <div class="panel panel-bordered">
             <div class="panel-body">
 
                 <div class="brand">

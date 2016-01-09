@@ -4,7 +4,7 @@
 error-page layout-full
 @endsection
 
-@section('title','Error')
+@section('title','Not Authorized')
 
 @section('page')
 
@@ -18,7 +18,7 @@ error-page layout-full
                     <h2 class="brand-text font-size-18">Argue Secure</h2>
                 </div>
 
-                <p>The item you requeste was not found :(</p>
+                <p>You do not have the authorization to see this page</p>
             </div>
         </div>
     </div>

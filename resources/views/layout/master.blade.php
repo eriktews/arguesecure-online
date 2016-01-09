@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="Argue Secure">
   <meta name="author" content="">
+  <meta name="csrf-token" content="{!! csrf_token() !!}">
   <title>Argue Secure - @yield('title')</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -76,10 +77,12 @@
   <script src="{{asset('js/components/animsition.js')}}"></script>
   <script src="{{asset('js/components/slidepanel.js')}}"></script>
   <script src="{{asset('js/components/switchery.js')}}"></script>
+  <script src="{{asset('js/components/panel.js')}}"></script>
   <script src="{{asset('js/components/material.js')}}"></script>
   <script src="{{asset('js/components/jquery-placeholder.js')}}"></script>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
   @if (Auth::check())
+  <script src="{{asset('js/laroute.js')}}"></script>
   <script src="{{asset('js/arsec.js')}}"></script>
   @endif
   <script>
@@ -91,7 +94,7 @@
     });
   })(document, window, jQuery);
   </script>
-  <script src="../assets/examples/js/dashboard/v1.js"></script>
+  @include('layout.javascript');
   
 </body>
 </html>

@@ -22,20 +22,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Tree::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word,
+        'title' => $faker->word,
         'is_public' => $faker->boolean
     ];
 });
 
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word
+        'title' => $faker->word
     ];
 });
 
 $factory->define(App\Risk::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word,
+        'title' => $faker->word,
         'text' => $faker->paragraph
     ];
 });

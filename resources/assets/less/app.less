@@ -42,3 +42,58 @@
 	min-height: 100%;
 	background: #F1F4F5;
 }
+
+/**
+ * Tooltip fix
+ */
+.tooltip-inner 
+{
+	white-space:nowrap;
+}
+
+/**
+ * 
+ */
+.argue-create-template
+{
+    display: none !important;
+}
+
+/**
+ * Bootstrap height fixes
+ */
+@media (min-width:1600px){
+    .auto-clear .col-xlg-1:nth-child(12n+1){clear:left;}
+    .auto-clear .col-xlg-2:nth-child(6n+1){clear:left;}
+    .auto-clear .col-xlg-3:nth-child(4n+1){clear:left;}
+    .auto-clear .col-xlg-4:nth-child(3n+1){clear:left;}
+    .auto-clear .col-xlg-6:nth-child(odd){clear:left;}
+}
+@media (min-width:1200px) and (max-width:1599px) {
+    .auto-clear .col-lg-1:nth-child(12n+1){clear:left;}
+    .auto-clear .col-lg-2:nth-child(6n+1){clear:left;}
+    .auto-clear .col-lg-3:nth-child(4n+1){clear:left;}
+    .auto-clear .col-lg-4:nth-child(3n+1){clear:left;}
+    .auto-clear .col-lg-6:nth-child(odd){clear:left;}
+}
+@media (min-width:992px) and (max-width:1199px){
+    .auto-clear .col-md-1:nth-child(12n+1){clear:left;}
+    .auto-clear .col-md-2:nth-child(6n+1){clear:left;}
+    .auto-clear .col-md-3:nth-child(4n+1){clear:left;}
+    .auto-clear .col-md-4:nth-child(3n+1){clear:left;}
+    .auto-clear .col-md-6:nth-child(odd){clear:left;}
+}
+@media (min-width:768px) and (max-width:991px){
+    .auto-clear .col-sm-1:nth-child(12n+1){clear:left;}
+    .auto-clear .col-sm-2:nth-child(6n+1){clear:left;}
+    .auto-clear .col-sm-3:nth-child(4n+1){clear:left;}
+    .auto-clear .col-sm-4:nth-child(3n+1){clear:left;}
+    .auto-clear .col-sm-6:nth-child(odd){clear:left;}
+}
+@media (max-width:767px){
+    .auto-clear .col-xs-1:nth-child(12n+1){clear:left;}
+    .auto-clear .col-xs-2:nth-child(6n+1){clear:left;}
+    .auto-clear .col-xs-3:nth-child(4n+1){clear:left;}
+    .auto-clear .col-xs-4:nth-child(3n+1){clear:left;}
+    .auto-clear .col-xs-6:nth-child(odd){clear:left;}
+}

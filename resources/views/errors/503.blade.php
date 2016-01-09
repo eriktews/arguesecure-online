@@ -1,17 +1,17 @@
-@extends('layout.basic')
+@extends('layout.master')
 
 @section('body_class')
-error
+error-page layout-full
 @endsection
 
-@section('title','Maintance')
+@section('title','Maintenance')
 
 @section('page')
 
 <div class="page animsition vertical-align text-center">
 
     <div class="page-content vertical-align-middle">
-        <div class="panel">
+        <div class="panel panel-bordered">
             <div class="panel-body">
 
                 <div class="brand">

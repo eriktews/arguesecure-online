@@ -32,7 +32,7 @@ class TreeEventTest extends TestCase
 
         $this->be($editing_user);
 
-        $tree->name = 'New Name';
+        $tree->title = 'New title';
         $tree->save();
 
         $tree->load('updatedBy');
@@ -50,7 +50,7 @@ class TreeEventTest extends TestCase
    
     public function testTreeDelete()
     {
-        //User should be able to edelete the tree
+        //User should be able to delete the tree
 
         $owner = factory(App\User::class)->create();
 

@@ -5,13 +5,25 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Observers\TreeObserver;
 
-use Auth;
-
 class Tree extends Model
 {
     public $timestamps = true;
 
-    protected $fillable = ['name', 'is_public'];
+    protected $fillable = ['title', 'description', 'text', 'public'];
+
+    /**
+     * Query Scopes
+     */
+    
+    /**
+     * Scope a query to only include visible trees.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeVisible($query)
+    {
+        return $query->distinct()->where('public', '=', 1)->orWhere('user_id','=',auth()->user()->id)->with('user');
+    }
 
     /**
      * Relationships

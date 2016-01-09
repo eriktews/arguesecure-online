@@ -13,10 +13,7 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['layout.header','layout.menu'], 'App\Http\ViewComposers\TreeListComposer');
-        
-        view()->composer('layout.header', 'App\Http\ViewComposers\HeaderComposer');
-        view()->composer('layout.menu', 'App\Http\ViewComposers\MenuComposer');
+        // view()->composer(['layout.header','layout.menu'], 'App\Http\ViewComposers\TreeListComposer');        
     }
 
     /**
