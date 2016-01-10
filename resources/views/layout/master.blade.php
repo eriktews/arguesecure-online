@@ -82,6 +82,7 @@
   <script src="{{asset('js/components/jquery-placeholder.js')}}"></script>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
   @if (Auth::check())
+  @include('layout.javascript');
   <script src="{{asset('js/laroute.js')}}"></script>
   <script src="{{asset('js/arsec.js')}}"></script>
   @endif
@@ -94,7 +95,6 @@
     });
   })(document, window, jQuery);
   </script>
-  @include('layout.javascript');
   
 </body>
 </html>

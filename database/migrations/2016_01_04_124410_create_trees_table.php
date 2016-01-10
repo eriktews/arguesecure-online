@@ -26,7 +26,9 @@ class CreateTreesTable extends Migration
 
             $table->tinyInteger('public');
 
-            $table->integer('locked')->unsigned();
+            $table->tinyInteger('locked');
+            
+            $table->bigInteger('lock_time')->unsigned();
 
             $table->timestamps();
 

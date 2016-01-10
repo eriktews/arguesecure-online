@@ -24,7 +24,7 @@ class TreeRequest extends Request
     public function rules()
     {
         return  [
-            'title' => 'required|max:255|unique:trees,title'.($this->tree ? ','.$this->tree:''),
+            'title' => 'required|max:255|unique:trees,title'.($this->tree->id ? ','.$this->tree->id:''),
         ];
     }
 

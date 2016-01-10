@@ -1,5 +1,5 @@
 <div class="col-xlg-4 col-md-6 argue-tree-wrapper" data-tree-id="{{$tree->id}}">
-    <div class="panel panel-bordered argue-tree" data-tree-id="{{$tree->id}}">
+    <div class="panel panel-bordered argue-tree" data-tree-id="{{$tree->id}}" data-tree-locked="{{$tree->locked}}">
     	<div class="panel-heading">
     		<h3 class="panel-title"><span class="argue-tree-title">{{$tree->title}}</span> - by <span class="argue-tree-user-name">{{$tree->user->name}}</span></h3>
     		<ul class="panel-actions argue-tree-actions">
@@ -19,5 +19,8 @@
     	<div class="panel-body argue-tree-description">
     		{{$tree->description}}
     	</div>
+        @if ($tree->locked && (auth()->user()->id != $tree->user_id) )
+        <div class="tree-lock"></div>
+        @endif
     </div>
 </div>

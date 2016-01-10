@@ -11,6 +11,8 @@ use App\Http\Requests\TreeRequest;
 
 use App\Tree;
 
+use JavaScript;
+
 class TreeController extends Controller
 {
     /**
@@ -21,7 +23,7 @@ class TreeController extends Controller
     public function index()
     {
         return view('tree.index', [
-            'trees' => Tree::visible()->paginate(15)
+            'trees' => Tree::paginate(15)
         ]);
     }
 
@@ -51,27 +53,33 @@ class TreeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Tree  $tree  Tree Model
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($tree)
     {
-        $tree = Tree::findOrFail($id);
-
-        return $id;
+        return $tree;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Tree  $tree  Tree Model
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($tree)
     {
-        $tree = Tree::findOrFail($id);
-
         $this->authorize('edit', $tree);
+
+        $tree->lock();
+
+        $tree->save();
+
+        JavaScript::put([
+            'model' => [
+                'type' => (new \ReflectionClass($tree))->getShortName(),
+                'id' => $tree->id]
+            ]);
 
         return view('tree.edit')->with('tree',$tree);
     }
@@ -80,14 +88,14 @@ class TreeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Requests\TreeRequest  $request
-     * @param  int  $id
+     * @param  \App\Treee  $tree  Tree Model
      * @return \Illuminate\Http\Response
      */
-    public function update(TreeRequest $request, $id)
+    public function update(TreeRequest $request, $tree)
     {
-        $tree = Tree::findOrFail($id);
-
         $this->authorize('update', $tree);
+
+        $tree->unlock();
 
         $tree->update($request->all());
 
@@ -97,14 +105,12 @@ class TreeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Requests\TreeRequest  $request
-     * @param  int  $id
+     * @param  \App\Requests\Request  $request
+     * @param  \App\Tree $tree Tree Model
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $tree)
     {
-        $tree = Tree::findOrFail($id);
-
         $this->authorize('destroy', $tree);
 
         $tree->delete();
@@ -117,11 +123,15 @@ class TreeController extends Controller
      * Ajax functions
      */
     
-    public function ajax(Request $request, $id)
+    /**
+     * Retrieve the HTML for the tree
+     * @param  Request $request 
+     * @param  \App\Tree  $tree  Tree Model
+     * @return string           HTML 
+     */
+    public function ajax(Request $request, $tree)
     {
         if ( ! $request->ajax() ) return abort(400);
-
-        $tree = Tree::findOrFail($id);
 
         return view('partials.tree', [ 'tree' => $tree ])->render();
     }

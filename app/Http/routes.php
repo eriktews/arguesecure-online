@@ -11,8 +11,6 @@
 |
 */
 
-use App\Events\TreeEvents\TreeCreated;
-
 /**
  * Authentication and register routes
  */
@@ -23,20 +21,18 @@ Route::post('login', ['as' => 'login-post', 'uses' => 'Auth\AuthController@postL
 /**
  * With Auth Middleware
  */
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'heartbeat']], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'TreeController@index']);
 
-    Route::get('/ajax/tree/{id}', ['as' => 'tree.ajax', 'uses' => 'TreeController@ajax']);
+    Route::get('/ajax/tree/{tree}', ['as' => 'tree.ajax', 'uses' => 'TreeController@ajax']);
 
     Route::resource('tree', 'TreeController');
+
+	Route::get('heartbeat', ['middleware' => [/*'throttle:10,1'*/], 'as' => 'heartbeat', 'uses' => 'HeartbeatController@beat']);
 
 	Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 });
 
-Route::get('test', function () {
-	$tree = new \App\Tree;
-	$tree->title = "test tree";
-	$tree->save();
-	$tree->delete();
-	return 'event Fired';
+Route::get('lock', function() {
+	\App\Tree::all()->first()->lock();
 });

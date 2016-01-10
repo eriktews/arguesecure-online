@@ -30,8 +30,6 @@ class TreeObserver extends BaseObserver
         parent::saving($tree);
 
         $tree->updatedBy()->associate(auth()->user()->id);
-
-        $tree->lock = time();
     }
 
     public function saved($tree)
@@ -39,7 +37,7 @@ class TreeObserver extends BaseObserver
         parent::saved($tree);
 
         //If public or was public
-        if ( $tree->getOriginal('public',0) || $tree->public)
+        if ( ( $tree->getOriginal('public',0) || $tree->public ) || ( auth()->user()->id == $tree->user_id ) || ( !in_array('locktime', $tree->getDirty()) ) )
             event(new TreeEvents\TreeSaved($tree));
     }
 

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Observers\TreeObserver;
+use App\Scopes\TreeVisibleScope;
 
 class Tree extends Model
 {
@@ -12,17 +13,15 @@ class Tree extends Model
     protected $fillable = ['title', 'description', 'text', 'public'];
 
     /**
-     * Query Scopes
-     */
-    
-    /**
-     * Scope a query to only include visible trees.
+     * The "booting" method of the model.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return void
      */
-    public function scopeVisible($query)
+    protected static function boot()
     {
-        return $query->distinct()->where('public', '=', 1)->orWhere('user_id','=',auth()->user()->id)->with('user');
+        parent::boot();
+
+        static::addGlobalScope(new TreeVisibleScope);
     }
 
     /**
@@ -47,6 +46,27 @@ class Tree extends Model
     public function risks()
     {
         return $this->hasMany('\App\Risk');
+    }
+
+    /**
+     * Helpers
+     */
+    
+    public function getShouldUnlockAttribute()
+    {
+        return $this->lock_time < time();
+    }
+    
+    //Does NOT save
+    public function lock()
+    {
+        $this->lock_time = time() + env('LOCK_TIME', 30);
+        $this->locked = true;
+    }
+
+    public function unlock()
+    {
+        $this->locked = false;
     }
 
 }
