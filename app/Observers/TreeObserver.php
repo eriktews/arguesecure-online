@@ -16,8 +16,8 @@ class TreeObserver extends BaseObserver
     {
         parent::created($tree);
 
-        if ($tree->public)
-            event(new TreeEvents\TreeCreated($tree));
+        // if ($tree->public)
+        //     event(new TreeEvents\TreeCreated($tree));
     }
 
     public function updating($tree)
