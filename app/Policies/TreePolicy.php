@@ -10,7 +10,7 @@ class TreePolicy
 
     public function show($user, $tree)
     {
-        return $tree->public || ( !$tree->public && ( $user->id == $tree->user_id ) );
+        return $tree->public || ( $user->id == $tree->user_id );
     }
 
     public function edit($user, $tree)

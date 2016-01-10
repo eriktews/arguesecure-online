@@ -46,12 +46,12 @@ class Heartbeat
     {
         $modelClass = new \ReflectionClass($this->namespace.'\\'.$request->input('type')); //TO ADD if in lockable 
 
-        if ( $modelClass->hasMethod('lock') )
+        if ( $modelClass->hasMethod('lock') && in_array($request->input('type'), $this->lockable) )
         {
             $modelInstance = $modelClass->newInstance();
             $model = $modelInstance->withoutGlobalScopes()->findOrFail($id);
 
-            if ($model->user_id != auth()->user()->id) // can be replaced with policies and gates
+            if (auth()->user()->can('edit',$model)) // can be replaced with policies and gates
             {
                 return response()->json('Tsk tsk tsk', 403);
             }
