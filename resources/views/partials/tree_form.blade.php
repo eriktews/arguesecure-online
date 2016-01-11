@@ -18,3 +18,8 @@
   	<label class="control-label" for="tree-text">Text</label>
  	{!! Form::textarea('text', null, ['class'=>'form-control', 'id'=>"tree-text", 'rows'=>'3']) !!}
 </div>
+
+<div class="form-group form-material">
+  	<label class="control-label" for="tree-categories">Categories</label>
+ 	{!! Form::select('categories[]', \App\Category::all()->pluck('title','slug')->toArray(), $tree->categories->pluck('title','slug')->toArray(), ['class'=>'form-control', 'id'=>"tree-categories", 'data-plugin'=>'select2', 'data-select2-tags'=>'true', 'multiple']) !!}
+</div>

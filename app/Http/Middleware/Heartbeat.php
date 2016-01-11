@@ -44,7 +44,10 @@ class Heartbeat
 
     private function updateLock($modelClass, $id)
     {
-        $modelClass = new \ReflectionClass($this->namespace.'\\'.$request->input('type')); //TO ADD if in lockable 
+        if ( !in_array($modelClass,$this->lockable) )
+            return 1;
+        
+        $modelClass = new \ReflectionClass($this->namespace.'\\'.$modelClass); //TO ADD if in lockable property
 
         if ( $modelClass->hasMethod('lock') && in_array($request->input('type'), $this->lockable) )
         {

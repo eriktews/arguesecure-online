@@ -53,7 +53,5 @@ class TreeObserver extends BaseObserver
         if ($tree->public)
             event(new TreeEvents\TreeDeleted($tree));        
     }
-
-
 	
 }

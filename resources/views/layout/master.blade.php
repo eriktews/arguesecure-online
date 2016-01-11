@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="{{asset('vendor/intro-js/introjs.css')}}">
   <link rel="stylesheet" href="{{asset('vendor/slidepanel/slidePanel.css')}}">
   <link rel="stylesheet" href="{{asset('vendor/flag-icon-css/flag-icon.css')}}">
+  <link rel="stylesheet" href="{{asset('vendor/select2/select2.css')}}">
   <link rel="stylesheet" href="{{asset('vendor/toastr/toastr.css')}}">
   <!-- Fonts -->
   <link rel="stylesheet" href="{{asset('fonts/font-awesome/font-awesome.min.css')}}">
@@ -49,6 +50,7 @@
   
   <!-- Core  -->
   <script src="{{asset('vendor/jquery/jquery.js')}}"></script>
+  <script src="{{asset('vendor/select2/select2.js')}}"></script>
   <script src="{{asset('vendor/velocity/velocity.min.js')}}"></script>
   <script src="{{asset('vendor/bootstrap/bootstrap.js')}}"></script>
   <script src="{{asset('vendor/animsition/animsition.js')}}"></script>
@@ -78,6 +80,7 @@
   <script src="{{asset('js/components/slidepanel.js')}}"></script>
   <script src="{{asset('js/components/switchery.js')}}"></script>
   <script src="{{asset('js/components/panel.js')}}"></script>
+  <script src="{{asset('js/components/select2.js')}}"></script>
   <script src="{{asset('js/components/material.js')}}"></script>
   <script src="{{asset('js/components/jquery-placeholder.js')}}"></script>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>

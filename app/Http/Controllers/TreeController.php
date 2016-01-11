@@ -11,6 +11,8 @@ use App\Http\Requests\TreeRequest;
 
 use App\Tree;
 
+use DB;
+
 use JavaScript;
 
 class TreeController extends Controller
@@ -78,7 +80,8 @@ class TreeController extends Controller
         JavaScript::put([
             'model' => [
                 'type' => (new \ReflectionClass($tree))->getShortName(),
-                'id' => $tree->id]
+                'id' => $tree->id
+                ]
             ]);
 
         return view('tree.edit')->with('tree',$tree);
@@ -92,7 +95,9 @@ class TreeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(TreeRequest $request, $tree)
-    {
+    {        
+        $this->syncCategories($tree, $request->input('categories'));
+
         $this->authorize('update', $tree);
 
         $tree->unlock();
@@ -118,6 +123,35 @@ class TreeController extends Controller
         return redirect()->route('tree.index')->with('success','Tree successfully deleted');
     }
 
+    /**
+     * Category functions
+     */
+    private function syncCategories($tree, $categories)
+    {
+        $slugged = array_map('str_slug', $categories);
+
+        $tree->categories()->sync([]);
+        //For each tag check if it exists, if so, then attach it, if not, create it
+        foreach ($slugged as $key => $value) {
+            if ($value != "") {
+                if (!$category = \App\Category::where('slug','=',str_slug($value))->first())
+                {
+                    $category = \App\Category::create(['title'=>$categories[$key],'slug'=>$value]);
+                }
+                $tree->categories()->attach($category->id);
+            }
+        }
+
+        $this->pruneCategories();
+
+    }
+
+    private function pruneCategories()
+    {
+        $empty_categories = \App\Category::doesntHave('trees')->get(['id'])->pluck('id')->toArray();
+
+        \App\Category::destroy($empty_categories);
+    }
 
     /**
      * Ajax functions
