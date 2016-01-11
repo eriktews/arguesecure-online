@@ -10,14 +10,29 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-use App\Events\UserConnected;
 
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+/**
+ * Authentication and register routes
+ */
 
-Route::get('home', function () {
-	
-	event(new UserConnected(\App\User::first()));
-	return view('basic.basic');
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
+Route::post('login', ['as' => 'login-post', 'uses' => 'Auth\AuthController@postLogin']);
+
+/**
+ * With Auth Middleware
+ */
+Route::group(['middleware' => ['auth', 'heartbeat']], function () {
+    Route::get('/', ['as' => 'home', 'uses' => 'TreeController@index']);
+
+    Route::get('/ajax/tree/{tree}', ['as' => 'tree.ajax', 'uses' => 'TreeController@ajax']);
+
+    Route::resource('tree', 'TreeController');
+
+	Route::get('heartbeat', ['middleware' => [/*'throttle:10,1'*/], 'as' => 'heartbeat', 'uses' => 'HeartbeatController@beat']);
+
+	Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+});
+
+Route::get('lock', function() {
+	\App\Tree::all()->first()->lock();
 });

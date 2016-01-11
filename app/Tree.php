@@ -4,14 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Observers\TreeObserver;
-
-use Auth;
+use App\Scopes\TreeVisibleScope;
 
 class Tree extends Model
 {
     public $timestamps = true;
 
-    protected $fillable = ['name', 'is_public'];
+    protected $fillable = ['title', 'description', 'text', 'public'];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new TreeVisibleScope);
+    }
 
     /**
      * Relationships
@@ -25,6 +36,37 @@ class Tree extends Model
     public function updatedBy()
     {
     	return $this->belongsTo('\App\User','updated_by');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany('\App\Category');
+    }
+
+    public function risks()
+    {
+        return $this->hasMany('\App\Risk');
+    }
+
+    /**
+     * Helpers
+     */
+    
+    public function getShouldUnlockAttribute()
+    {
+        return $this->lock_time < time();
+    }
+    
+    //Does NOT save
+    public function lock()
+    {
+        $this->lock_time = time() + env('LOCK_TIME', 30);
+        $this->locked = true;
+    }
+
+    public function unlock()
+    {
+        $this->locked = false;
     }
 
 }

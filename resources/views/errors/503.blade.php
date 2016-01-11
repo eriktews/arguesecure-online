@@ -1,47 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Be right back.</title>
+@extends('layout.master')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('body_class')
+error-page layout-full
+@endsection
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+@section('title','Maintenance')
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+@section('page')
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+<div class="page animsition vertical-align text-center">
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+    <div class="page-content vertical-align-middle">
+        <div class="panel panel-bordered">
+            <div class="panel-body">
 
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Be right back.</div>
+                <div class="brand">
+                    <h2 class="brand-text font-size-18">Argue Secure</h2>
+                </div>
+
+                <p>Our robots are hard at work performing maintenance operations.</p>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+
+
+@endsection

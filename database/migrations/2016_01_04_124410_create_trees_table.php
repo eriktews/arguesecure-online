@@ -15,17 +15,25 @@ class CreateTreesTable extends Migration
         Schema::create('trees', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name');
+            $table->string('title');
+
+            $table->string('description');
+
+            $table->text('text');
 
             $table->integer('user_id')->unsigned()->nullable();
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->boolean('is_public');
+            $table->tinyInteger('public');
+
+            $table->tinyInteger('locked');
+            
+            $table->bigInteger('lock_time')->unsigned();
 
             $table->timestamps();
 
             $table->integer('updated_by')->unsigned()->nullable();
-            // $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
         });
     }
 

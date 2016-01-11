@@ -3,6 +3,8 @@
  */
 var port = 3002;
 
+var redis_channel = 'argue';
+
 
 var app = require('express')();
 var http = require('http').Server(app);
@@ -12,8 +14,9 @@ var Redis = require('ioredis');
 io.on('connection', function (socket) {
 
   console.log("new client connected");
+
   var redis = new Redis();
-  redis.subscribe('argue');
+  redis.subscribe(redis_channel);
  
   redis.on("message", function(channel, message) {
   	message = JSON.parse(message);
@@ -23,9 +26,10 @@ io.on('connection', function (socket) {
  
   socket.on('disconnect', function() {
   	console.log('client disconnected');
-  	redis.quit();
+
+    redis.quit();
   });
- 
+
 });
 
 http.listen(port, function(){
