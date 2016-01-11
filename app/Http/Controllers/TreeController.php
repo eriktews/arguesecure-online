@@ -25,7 +25,7 @@ class TreeController extends Controller
     public function index()
     {
         return view('tree.index', [
-            'trees' => Tree::paginate(15)
+            'trees' => Tree::all()
         ]);
     }
 

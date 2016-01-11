@@ -14,9 +14,4 @@ trees-index-page
 		@include('partials.tree', ['tree'=>$tree])
 	@endforeach
 </div>
-<div class="row">
-	<div>
-	{!! $trees->render() !!}
-	</div>
-</div>
 @endsection
