@@ -46,8 +46,8 @@ class Heartbeat
     {
         if ( !in_array($modelClass,$this->lockable) )
             return 1;
-        
-        $modelClass = new \ReflectionClass($this->namespace.'\\'.$modelClass); //TO ADD if in lockable property
+
+        $modelClass = new \ReflectionClass($this->namespace.'\\'.$modelClass);
 
         if ( $modelClass->hasMethod('lock') && in_array($request->input('type'), $this->lockable) )
         {
