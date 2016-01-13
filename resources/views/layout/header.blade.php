@@ -29,7 +29,7 @@ data-toggle="collapse">
         </a>
       </li>
       <li>
-        <a href="{{route('tree.index')}}">Trees</a>
+        <a href="{{route('tree.index')}}">Tree list</a>
       </li>
     </ul>
     <!-- End Navbar Toolbar -->
