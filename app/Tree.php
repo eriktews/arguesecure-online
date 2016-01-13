@@ -52,6 +52,16 @@ class Tree extends Model
      * Helpers
      */
     
+    public function getNodeTypeAttribute()
+    {
+        return 'tree';
+    }
+
+    public function getNodeRouteAttribute()
+    {
+        return 'tree';
+    }
+    
     public function getChildrenAttribute()
     {
         return $this->risks;

@@ -12,7 +12,7 @@ trees-view-page tree-page-{{$tree->id}}
 <div class="row auto-clear">
 	<div class="col-md-12 argue-tree-container">
 		<div class="argue-tree-vis">
-			@include('visualisation.tree',['node'=>$tree])
+			@include('visualisation.leaf',['node'=>$tree])
 		</div>
 	</div>
 </div>

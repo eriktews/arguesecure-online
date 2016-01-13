@@ -128,6 +128,8 @@ class TreeController extends Controller
      */
     private function syncCategories($tree, $categories)
     {
+        if ( !is_array($categories) ) return 1;
+
         $slugged = array_map('str_slug', $categories);
 
         $tree->categories()->sync([]);
@@ -167,6 +169,19 @@ class TreeController extends Controller
     {
         if ( ! $request->ajax() ) return abort(400);
 
-        return view('partials.tree', [ 'tree' => $tree ])->render();
+        return view('partials.tree', [ 'node' => $tree ])->render();
+    }
+
+    /**
+     * Retrieve the HTML for the tree visualisation
+     * @param  Request $request 
+     * @param  \App\Tree  $tree  Tree Model
+     * @return string           HTML 
+     */
+    public function nodeTreeVis(Request $request, $tree)
+    {
+        if ( ! $request->ajax() ) return abort(400);
+
+        return view('visualisation.leaf', [ 'node' => $tree ])->render();
     }
 }

@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth', 'heartbeat']], function () {
 
     Route::get('/ajax/tree/{tree}', ['as' => 'tree.ajax', 'uses' => 'TreeController@ajax']);
 
+    Route::get('/ajax/node/{tree}/{risk?}/{attack?}/{defence?}', ['as' => 'node.ajax', 'uses' => 'TreeController@nodeTreeVis']);
+
     Route::resource('tree', 'TreeController');
 
 	Route::get('heartbeat', ['middleware' => [/*'throttle:10,1'*/], 'as' => 'heartbeat', 'uses' => 'HeartbeatController@beat']);

@@ -7,10 +7,12 @@ var socket = io('http://192.168.10.10:3002');
 var heart = laroute.route('heartbeat');
 var heartrate = 31000;
 
-// //Connect to websocket
-// socket.on('connect', function() {
-
-// });
+//Connect to websocket
+socket.on('connect', function() {
+	socket.on('message', function (msg) {
+      console.log(msg);
+    });
+});
 
 /**
  * Tree Create and Edit
@@ -18,6 +20,8 @@ var heartrate = 31000;
 
 socket.on("argue:App\\Events\\TreeEvents\\TreeSaved", function(message)
 {
+	console.log(message);
+
 	if ( ! $('.argue-tree-container').length ) return true;
 
 	if (message.tree.public == 0) {
@@ -67,8 +71,9 @@ $('.argue-tree-action-delete-form').submit(function(event)
 	.done(function() {
 		$('.argue-tree-wrapper[data-tree-id="'+tree+'"]').remove();
 	})
-	.fail(function() {
-		toastr.danger('Could not delete tree :(');
+	.fail(function(request, error, exception) {
+		console.log(error, exception);
+		toastr.error('Could not delete tree :(<br>A user might be editing a child node');
 	});
 });
 
@@ -120,11 +125,15 @@ function argueDeleteTree(id)
 
 function argueUpdateTree(id)
 {
-	$.ajax({
-        headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') },
-		url: laroute.route('tree.ajax', { id: id }),
+	var ajax_args = {
+		headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') },
+		url: laroute.route('tree.ajax', { tree: id }),
 		method: 'GET'
-	})
+	}
+	if ($('.argue-tree-vis').length) {
+		ajax_args.url = laroute.route('node.ajax', {tree: id})
+	}
+	$.ajax(ajax_args)
 	.done(function(data) {
 		$(argueGetTreeByID(id)).replaceWith(data);
 	})
@@ -132,6 +141,26 @@ function argueUpdateTree(id)
 		toastr.danger('Could not get updated tree information :(');
 	});
 }
+
+/**
+ * Tree Visualisation js
+ */
+
+$('.argue-tree-vis-leaf').click(function(event) { 
+	var elem = $(this);
+	if ($(elem).hasClass('argue-tree-buttons-open')) {
+		$(elem).removeClass('argue-tree-buttons-open');
+		$(elem).children('.argue-tree-actions').velocity("slideUp", { duration: 300 });
+	}
+	else {
+		$(elem).addClass('argue-tree-buttons-open');
+		$(elem).children('.argue-tree-actions').velocity("slideDown", { duration: 300});
+	}
+});
+
+/**
+ * Heartbeat
+ */
 
 (function heartbeat()
 {

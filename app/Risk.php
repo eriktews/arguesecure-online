@@ -28,6 +28,16 @@ class Risk extends Model
      * Helpers
      */
     
+    public function getNodeTypeAttribute()
+    {
+        return 'risk';
+    }
+
+    public function getNodeRouteAttribute()
+    {
+        return 'risk';
+    }
+    
     public function getChildrenAttribute()
     {
         return [];
