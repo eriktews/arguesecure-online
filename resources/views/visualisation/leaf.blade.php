@@ -1,0 +1,1 @@
+<li><div class="argue-tree-vis-title">{{$node->title}}</div>

@@ -52,9 +52,19 @@ class Tree extends Model
      * Helpers
      */
     
+    public function getChildrenAttribute()
+    {
+        return $this->risks;
+    }
+    
     public function getShouldUnlockAttribute()
     {
         return $this->lock_time < time();
+    }
+
+    public function isDeletable()
+    {
+
     }
     
     //Does NOT save

@@ -60,7 +60,7 @@ class TreeController extends Controller
      */
     public function show($tree)
     {
-        return $tree;
+        return view('tree.view')->with('tree',$tree);
     }
 
     /**

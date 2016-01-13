@@ -16,6 +16,9 @@ class CreateRisksTable extends Migration
             $table->increments('id');
 
             $table->string('title');
+
+            $table->string('description');
+            
             $table->text('text');
 
             $table->integer('tree_id')->unsigned()->nullable();

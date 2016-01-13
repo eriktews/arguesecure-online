@@ -8,7 +8,7 @@ class Risk extends Model
 {
     public $timestamps = true;
     
-    protected $fillable = ['name','text'];
+    protected $fillable = ['title','description', 'text'];
 
     /**
      * Relationships
@@ -22,6 +22,15 @@ class Risk extends Model
     public function updatedBy()
     {
     	return $this->belongsTo('\App\User','updated_by');
+    }
+
+    /**
+     * Helpers
+     */
+    
+    public function getChildrenAttribute()
+    {
+        return [];
     }
 
 }

@@ -151,4 +151,3 @@ function argueUpdateTree(id)
     	setTimeout( heartbeat, heartrate );
     });
 })(laroute);
-//# sourceMappingURL=arsec.js.map

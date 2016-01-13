@@ -61,7 +61,6 @@
   <!-- Plugins -->
   <script src="{{asset('vendor/switchery/switchery.min.js')}}"></script>
   <script src="{{asset('vendor/toastr/toastr.js')}}"></script>
-  <script src="{{asset('vendor/d3/d3.js')}}"></script>
 
   {{-- <script src="{{asset('vendor/intro-js/intro.js')}}"></script> --}}
   <script src="{{asset('vendor/screenfull/screenfull.js')}}"></script>
@@ -90,6 +89,7 @@
   <script src="{{asset('js/laroute.js')}}"></script>
   <script src="{{asset('js/arsec.js')}}"></script>
   @endif
+  @yield('scripts')
   <script>
   (function(document, window, $) {
     'use strict';
