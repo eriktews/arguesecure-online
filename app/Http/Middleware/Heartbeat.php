@@ -11,7 +11,7 @@ class Heartbeat
 
     private $namespace = '\App';
 
-    private $lockable = ['Tree','Risk'];
+    private $lockable = ['Tree','Risk','Attack','Defence'];
 
     /**
      * Handle an incoming request.
