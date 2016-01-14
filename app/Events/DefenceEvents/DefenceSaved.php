@@ -21,14 +21,14 @@ class DefenceSaved extends Event implements ShouldBroadcast
      */
     public function __construct(\App\Defence $defence)
     {
-        $this->defence = $defence;
+        $this->defence = $defence->load('attacks');
         $this->tree = [
             'id' => $defence->tree->id,
             'public' => $defence->tree->public
         ];
         $this->parent = [
             'type' => 'attack',
-            'id' => $defence->attacks->pluck('id')
+            'id' => $defence->tempAttacks
         ];
     }
 

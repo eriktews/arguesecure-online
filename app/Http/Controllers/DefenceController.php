@@ -42,6 +42,7 @@ class DefenceController extends Controller
 
         $new_defence = new Defence($request->all());
         $new_defence->tree()->associate($request->input('tree'));
+        $new_defence->tempAttacks = $request->input('attacks');
         $new_defence->save();
         $new_defence->attacks()->sync($request->input('attacks'));
         
@@ -54,9 +55,9 @@ class DefenceController extends Controller
      * @param  \App\risk  $risk  risk Model
      * @return \Illuminate\Http\Response
      */
-    public function show($risk, $attack)
+    public function show($attack, $defence)
     {
-        return view('attack.view')->with('attack',$attack);
+        return view('defence.view')->with('attack',$attack);
     }
 
     /**
@@ -65,22 +66,22 @@ class DefenceController extends Controller
      * @param  \App\risk  $risk  risk Model
      * @return \Illuminate\Http\Response
      */
-    public function edit($risk, $attack)
+    public function edit($attack, $defence)
     {
-        $this->authorize('edit', $attack);
+        $this->authorize('edit', $defence);
 
-        $attack->lock();
+        $defence->lock();
 
-        $attack->save();
+        $defence->save();
 
         JavaScript::put([
             'model' => [
-                'type' => (new \ReflectionClass($attack))->getShortName(),
-                'id' => $attack->id
+                'type' => (new \ReflectionClass($defence))->getShortName(),
+                'id' => $defence->id
                 ]
             ]);
 
-        return view('attack.edit')->with('attack',$attack);
+        return view('defence.edit')->with('defence',$defence)->with('attack',$attack);
     }
 
     /**
@@ -90,15 +91,17 @@ class DefenceController extends Controller
      * @param  \App\riske  $risk  risk Model
      * @return \Illuminate\Http\Response
      */
-    public function update(AttackRequest $request, $risk, $attack)
+    public function update(DefenceRequest $request, $attack, $defence)
     {        
-        $this->authorize('update', $attack);
+        $this->authorize('update', $defence);
 
-        $attack->unlock();
+        $defence->unlock();
 
-        $attack->update($request->all());
+        $defence->attacks()->sync($request->input('attacks'));
+        
+        $defence->update($request->all());
 
-        return redirect()->route('tree.show', [$attack->tree->id])->with('success','Attack successfully edited');
+        return redirect()->route('tree.show', [$defence->tree->id])->with('success','Defence successfully edited');
     }
 
     /**
@@ -108,13 +111,13 @@ class DefenceController extends Controller
      * @param  \App\risk $risk risk Model
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $attack)
+    public function destroy(Request $request, $defence)
     {        
-        $this->authorize('destroy', $attack);
+        $this->authorize('destroy', $defence);
 
-        $attack->delete();
+        $defence->delete();
 
-        return redirect()->route('tree.show',[$attack->tree->id])->with('success','Attack successfully deleted');
+        return redirect()->route('tree.show',[$defence->tree->id])->with('success','Defence successfully deleted');
     }
 
 }

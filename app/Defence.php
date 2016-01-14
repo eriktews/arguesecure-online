@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Defence extends Model
 {
     public $timestamps = true;
+
+    public $tempAttacks = null;
     
     protected $fillable = ['title','description', 'text', 'tree_id'];
 

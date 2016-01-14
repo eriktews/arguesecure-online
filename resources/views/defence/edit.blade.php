@@ -19,7 +19,7 @@ defences-edit-page
 
 		<div class="form-group">		
 			{!! Form::submit('Save',['class'=>'btn btn-primary'])!!}
-			<a href="{{route('tree.show',[$attack->tree->id])}}" class="btn btn-danger">Back</a>
+			<a href="{{route('tree.show',[$defence->tree->id])}}" class="btn btn-danger">Back</a>
 		</div>
 
 	    {!! Form::close() !!}

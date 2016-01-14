@@ -213,14 +213,16 @@ function argueTreeVisRemoveNode(message, type)
 	if ( ! $(container).length ) return true;
 
 	var node = '.argue-' + type + '-wrapper[data-' + type + '-id="' + message[type].id +'"';
-	var node_container = $(node).parent();
 	if ($(node).length) {
-		$(node).remove();
-		if ($(node_container).children().length == 0 ) {
-			$(node_container).remove();
-		}
-		toastr.info('A '+ type + ' has been deleted');
+		$(node).each(function (i) {
+			var node_container = $(node).parent();
+			$(this).remove();
+			if ($(node_container).children().length == 0 ) {
+				$(node_container).remove();
+			}
+		});
 	}
+	toastr.info('A '+ type + ' has been deleted');
 
 }
 
@@ -267,14 +269,19 @@ function argueTreeVisRenderNodeAjax(id, type, parent)
 			});
 		}
 		else {
-			var parent_selector = '.argue-'+parent.type+'-wrapper[data-'+parent.type+'-id='+parent.id+']';
-			if ($(parent_selector).length) {
-				if (! $(parent_selector).children('ul').length) {
-					$(parent_selector).append('<ul></ul>');
+			if (parent.id.constructor !== Array) {
+				parent.id = [id];
+			}
+			$.each(parent.id, function(i, value) {
+				var parent_selector = '.argue-'+parent.type+'-wrapper[data-'+parent.type+'-id='+value+']';
+				if ($(parent_selector).length) {
+					if (! $(parent_selector).children('ul').length) {
+						$(parent_selector).append('<ul></ul>');
+					}
 				}
 				var ul = $(parent_selector).children('ul');
 				$(ul).append(data);
-			}
+			});
 		}
 
 	})
