@@ -10,16 +10,16 @@ class RiskDeleted extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
-    public $Risk;
+    public $risk;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Risk $Risk)
+    public function __construct(\App\Risk $risk)
     {
-        $this->Risk = $Risk;
+        $this->risk = $risk;
     }
 
     /**

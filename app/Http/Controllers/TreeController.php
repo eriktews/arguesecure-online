@@ -11,8 +11,6 @@ use App\Http\Requests\TreeRequest;
 
 use App\Tree;
 
-use DB;
-
 use JavaScript;
 
 class TreeController extends Controller
@@ -49,7 +47,7 @@ class TreeController extends Controller
     {
         $new_tree = Tree::create($request->all());
 
-        return redirect()->route('tree.index')->with('succes','Tree successfully created');
+        return redirect()->route('tree.show',$new_tree->id)->with('succes','Tree successfully created');
     }
 
     /**
@@ -118,9 +116,22 @@ class TreeController extends Controller
     {
         $this->authorize('destroy', $tree);
 
-        $tree->delete();
+        if ($tree->delete()) {
 
-        return redirect()->route('tree.index')->with('success','Tree successfully deleted');
+            if ($request->ajax())
+            {
+                return response()->json(['message' => 'Tree '.$tree->id.': '.$tree->title.' succesfully deleted'],200);
+            }
+    
+            return redirect()->route('tree.index')->with('success','Tree successfully deleted');
+    
+        }
+
+        if ($request->ajax()) {
+            return response()->json(['message'=>'currently in use'],400);
+        }
+
+        return abort(400);
     }
 
     /**
@@ -169,19 +180,6 @@ class TreeController extends Controller
     {
         if ( ! $request->ajax() ) return abort(400);
 
-        return view('partials.tree', [ 'node' => $tree ])->render();
-    }
-
-    /**
-     * Retrieve the HTML for the tree visualisation
-     * @param  Request $request 
-     * @param  \App\Tree  $tree  Tree Model
-     * @return string           HTML 
-     */
-    public function nodeTreeVis(Request $request, $tree)
-    {
-        if ( ! $request->ajax() ) return abort(400);
-
-        return view('visualisation.leaf', [ 'node' => $tree ])->render();
+        return view('partials.tree', [ 'tree' => $tree ])->render();
     }
 }

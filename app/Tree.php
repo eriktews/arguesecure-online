@@ -46,25 +46,16 @@ class Tree extends Model
     public function risks()
     {
         return $this->hasMany('\App\Risk');
-    }
+    }    
+    
 
     /**
      * Helpers
      */
     
-    public function getNodeTypeAttribute()
+    public function children()
     {
-        return 'tree';
-    }
-
-    public function getNodeRouteAttribute()
-    {
-        return 'tree';
-    }
-    
-    public function getChildrenAttribute()
-    {
-        return $this->risks;
+        return $this->risks();
     }
     
     public function getShouldUnlockAttribute()
@@ -72,21 +63,43 @@ class Tree extends Model
         return $this->lock_time < time();
     }
 
-    public function isDeletable()
+    //Hack to make everything run smooth on update
+    public function getParentIdAttribute()
     {
+        return $this->id;
+    }
 
+
+    /**
+     * Fake $node->parent
+     * @return [type] [description]
+     */
+    public function getParentAttribute()
+    {
+        return null;
+    }
+
+    public function getIsDeletableAttribute()
+    {
+        $children = $this->children;
+        foreach($children as $child)
+        {
+            if ( !$child->is_deletable)
+                return false;
+        }
+        return true;
     }
     
     //Does NOT save
     public function lock()
     {
         $this->lock_time = time() + env('LOCK_TIME', 30);
-        $this->locked = true;
+        $this->locked = 1;
     }
 
     public function unlock()
     {
-        $this->locked = false;
+        $this->locked = 0;
     }
 
 }

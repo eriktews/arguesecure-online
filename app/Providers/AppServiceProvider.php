@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \App\Attack::observe( new \App\Observers\AttackObserver );
         \App\Risk::observe( new \App\Observers\RiskObserver );
         \App\Tree::observe( new \App\Observers\TreeObserver );
         \App\User::observe( new \App\Observers\UserObserver );

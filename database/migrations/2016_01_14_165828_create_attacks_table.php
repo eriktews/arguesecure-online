@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRisksTable extends Migration
+class CreateAttacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRisksTable extends Migration
      */
     public function up()
     {
-        Schema::create('risks', function (Blueprint $table) {
+        Schema::create('attacks', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('title');
@@ -21,8 +21,8 @@ class CreateRisksTable extends Migration
             
             $table->text('text');
 
-            $table->integer('tree_id')->unsigned()->nullable();
-            $table->foreign('tree_id')->references('id')->on('trees')->onDelete('cascade');
+            $table->integer('risk_id')->unsigned()->nullable();
+            $table->foreign('risk_id')->references('id')->on('risks')->onDelete('cascade');
 
             $table->tinyInteger('locked');
             
@@ -42,6 +42,6 @@ class CreateRisksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('risks');
+        Schema::drop('attacks');
     }
 }

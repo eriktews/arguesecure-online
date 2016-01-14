@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Events\RiskEvents;
+namespace App\Events\AttackEvents;
 
 use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class RiskSaved extends Event implements ShouldBroadcast
+class AttackSaved extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
-    public $risk;
+    public $attack;
     public $tree;
     public $parent;
 
@@ -19,16 +19,16 @@ class RiskSaved extends Event implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(\App\Risk $risk)
+    public function __construct(\App\Attack $attack)
     {
-        $this->risk = $risk;
+        $this->attack = $attack;
         $this->tree = [
-            'id' => $risk->tree->id,
-            'public' => $risk->tree->public
+            'id' => $attack->tree->id,
+            'public' => $attack->tree->public
         ];
         $this->parent = [
-            'type' => 'tree',
-            'id' => $risk->tree->id
+            'type' => 'risk',
+            'id' => $attack->risk->id
         ];
     }
 

@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Events\RiskEvents;
+namespace App\Events\AttackEvents;
 
 use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class RiskCreated extends Event implements ShouldBroadcastNow
+class AttackCreated extends Event implements ShouldBroadcastNow
 {
     use SerializesModels;
 
-    public $risk;
+    public $attack;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Risk $risk)
+    public function __construct(\App\Attack $attack)
     {
-        $this->risk = $risk;
+        $this->attack = $attack;
     }
 
     /**

@@ -26,9 +26,45 @@ Route::group(['middleware' => ['auth', 'heartbeat']], function () {
 
     Route::get('/ajax/tree/{tree}', ['as' => 'tree.ajax', 'uses' => 'TreeController@ajax']);
 
-    Route::get('/ajax/node/{tree}/{risk?}/{attack?}/{defence?}', ['as' => 'node.ajax', 'uses' => 'TreeController@nodeTreeVis']);
+    Route::get('/ajax/node/tree/{tree}', ['as' => 'node.ajax.tree', 'uses' => 'NodeController@nodeTreeVis']);
+    Route::get('/ajax/node/risk/{risk}', ['as' => 'node.ajax.risk', 'uses' => 'NodeController@nodeTreeVis']);
+    Route::get('/ajax/node/attack/{attack}', ['as' => 'node.ajax.attack', 'uses' => 'NodeController@nodeTreeVis']);
+    Route::get('/ajax/node/defence/{defence}', ['as' => 'node.ajax.defence', 'uses' => 'NodeController@nodeTreeVis']);
+
+    Route::delete('risk/{risk}', ['as'=>'risk.destroy', 'uses' => 'RiskController@destroy']);
+
+    Route::resource('tree.risk', 'RiskController', [
+    	'names' => [
+    	    'show' => 'risk.show',
+    	    'create' => 'risk.create',
+    	    'store' => 'risk.store',
+    	    'edit' => 'risk.edit',
+    	    'update' => 'risk.update'
+    	],
+    	'except' => [
+    		'index',
+            'destroy'
+		]
+	]);
+
+    Route::delete('attack/{attack}', ['as'=>'attack.destroy', 'uses' => 'AttackController@destroy']);
+    
+    Route::resource('risk.attack', 'AttackController', [
+        'names' => [
+            'show' => 'attack.show',
+            'create' => 'attack.create',
+            'store' => 'attack.store',
+            'edit' => 'attack.edit',
+            'update' => 'attack.update'
+        ],
+        'except' => [
+            'index',
+            'destroy'
+        ]
+    ]);
 
     Route::resource('tree', 'TreeController');
+    
 
 	Route::get('heartbeat', ['middleware' => [/*'throttle:10,1'*/], 'as' => 'heartbeat', 'uses' => 'HeartbeatController@beat']);
 

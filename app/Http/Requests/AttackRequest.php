@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class TreeRequest extends Request
+class AttackRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class TreeRequest extends Request
     public function rules()
     {
         return  [
-            'title' => 'required|max:255|unique:trees,title'.( (isset($this->tree) && $this->tree->id) ? ','.$this->tree->id : ''),
+            'title' => 'required|max:255',
         ];
     }
 

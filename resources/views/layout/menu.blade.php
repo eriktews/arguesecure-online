@@ -11,8 +11,9 @@
             </a>
           </li>
           @foreach ($sidebar_trees as $tree)
-          <li class="site-menu-item">
-            <a href="{{route('tree.show',$tree->id)}}">
+          <li class="site-menu-item" data-tree-id="{{$tree->id}}">
+            <a href="{{ route('tree.show', ['id' => $tree->id]) }}">
+              <i class="site-menu-icon fa fa-sitemap" aria-hidden="true"></i>
               <span class="site-menu-title">{{$tree->title}}</span>
             </a>
           </li>
@@ -22,12 +23,8 @@
     </div>
   </div>
   <div class="site-menubar-footer">
-    <a href="javascript: void(0);" class="fold-show" data-placement="top" data-toggle="tooltip"
-    data-original-title="Settings">
-    <span class="icon wb-settings" aria-hidden="true"></span>
-  </a>
-  <a href="{{route('logout')}}" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
-    <span class="icon wb-power" aria-hidden="true"></span>
-  </a>
-</div>
+    <a href="{{route('logout')}}" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
+      <span class="icon wb-power" aria-hidden="true"></span>
+    </a>
+  </div>
 </div>

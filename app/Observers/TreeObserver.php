@@ -43,6 +43,10 @@ class TreeObserver extends BaseObserver
 
     public function deleting($tree)
     {
+        if (!$tree->is_deletable) {
+            return false;
+        }
+
         parent::deleting($tree);
 
         foreach($tree->risks as $risk)
@@ -50,8 +54,7 @@ class TreeObserver extends BaseObserver
             $risk->delete();
         }        
 
-        if ($tree->public)
-            event(new TreeEvents\TreeDeleted($tree));        
+        event(new TreeEvents\TreeDeleted($tree));        
     }
 	
 }
