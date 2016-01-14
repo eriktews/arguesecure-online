@@ -27,7 +27,8 @@ class Heartbeat
         $time_between_requests = env('HEARTRATE', 29); //in seconds;
 
 
-        if ($hearttick == null || 0 + $hearttick + $time_between_requests <= time() )
+        // if ($hearttick == null || 0 + $hearttick + $time_between_requests < time() )
+        if(true)
         {
             if ($request->has('arsec_update_type') && $request->has('arsec_update_id') && in_array($request->input('arsec_update_type'), $this->lockable))
             {
@@ -70,7 +71,7 @@ class Heartbeat
         if ( $modelClass->hasMethod('unlock') )
         {
             $modelInstance = $modelClass->newInstance();
-            $models = $modelInstance->withoutGlobalScopes()->where('locked','=',1)->where('lock_time','<',time()+env('HEARTRATE', 29))->get();
+            $models = $modelInstance->withoutGlobalScopes()->where('locked','=',1)->where('lock_time','<',time()-env('HEARTRATE', 29))->get();
 
             foreach ($models as $model) 
             {
