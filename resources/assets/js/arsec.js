@@ -116,6 +116,19 @@ socket.on("argue:App\\Events\\AttackEvents\\AttackDeleted", function(message)
 	argueTreeVisRemoveNode(message, 'attack');
 });
 
+/**
+ * Defence Events
+ */
+socket.on("argue:App\\Events\\DefenceEvents\\DefenceSaved", function(message)
+{
+	argueTreeVisRenderNode(message,'defence');
+});
+
+socket.on("argue:App\\Events\\DefenceEvents\\DefenceDeleted", function(message)
+{
+	argueTreeVisRemoveNode(message, 'defence');
+});
+
 //Close socket on leaving the page
 $(window).on('beforeunload', function()
 {

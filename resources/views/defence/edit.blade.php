@@ -2,10 +2,10 @@
 
 @section('body_class')
 @parent
-attacks-edit-page
+defences-edit-page
 @endsection
 
-@section('title','Edit Attack')
+@section('title','Edit Defence')
 
 @section('content')
 
@@ -13,9 +13,9 @@ attacks-edit-page
 	
 	<div class="panel-body container-fluid">
 
-		{!! Form::model($attack, ['route' => ['attack.update',$attack->parent_id, $attack->id], 'method'=>'put', 'autocomplete'=>'off']) !!}
+		{!! Form::model($defence, ['route' => ['defence.update',$defence->parent_id, $defence->id], 'method'=>'put', 'autocomplete'=>'off']) !!}
 		
-		@include('partials.attack_form')
+		@include('partials.defence_form')
 
 		<div class="form-group">		
 			{!! Form::submit('Save',['class'=>'btn btn-primary'])!!}

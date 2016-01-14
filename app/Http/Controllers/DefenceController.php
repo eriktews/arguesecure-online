@@ -7,24 +7,24 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\AttackRequest;
+use App\Http\Requests\DefenceRequest;
 
-use App\Attack;
+use App\Defence;
 
 use JavaScript;
 
-class AttackController extends Controller
+class DefenceController extends Controller
 {
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($risk)
+    public function create($attack)
     {
-        $this->authorize('append',$risk);
+        $this->authorize('append',$attack);
 
-        return view('attack.create')->with('risk',$risk);
+        return view('defence.create')->with('attack',$attack);
     }
 
     /**
@@ -33,14 +33,19 @@ class AttackController extends Controller
      * @param  \App\Requests\riskRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AttackRequest $request, $risk)
+    public function store(DefenceRequest $request, $attack)
     {
-        $this->authorize('append',$risk);
+        $this->authorize('append',$attack);
 
-        $new_attack = new Attack($request->all());
-        $new_attack->risk()->associate($risk)->save();
+        if ($attack->tree->id != $request->input('tree'))
+            abort(400);
 
-        return redirect()->route('tree.show',[$risk->tree])->with('succes','Attack successfully created');
+        $new_defence = new Defence($request->all());
+        $new_defence->tree()->associate($request->input('tree'));
+        $new_defence->save();
+        $new_defence->attacks()->sync($request->input('attacks'));
+        
+        return redirect()->route('tree.show',[$attack->tree])->with('succes','Defence successfully created');
     }
 
     /**
@@ -104,26 +109,12 @@ class AttackController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $attack)
-    {    
-
+    {        
         $this->authorize('destroy', $attack);
 
-        if ($attack->delete()) {
+        $attack->delete();
 
-            if ($request->ajax())
-            {
-                return response()->json(['message' => 'Attack '.$attack->id.': '.$attack->title.' succesfully deleted'],200);
-            }
-        
-            return redirect()->route('tree.show',[$attack->tree->id])->with('success','Attack successfully deleted');
-        
-        }
-
-        if ($request->ajax()) {
-            return response()->json(['message'=>'currently in use'],400);
-        }
-
-        return abort(400);
+        return redirect()->route('tree.show',[$attack->tree->id])->with('success','Attack successfully deleted');
     }
 
 }

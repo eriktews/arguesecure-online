@@ -107,9 +107,22 @@ class RiskController extends Controller
     {        
         $this->authorize('destroy', $risk);
 
-        $risk->delete();
+        if ($risk->delete()) {
 
-        return redirect()->route('tree.show',[$risk->tree])->with('success','Risk successfully deleted');
+            if ($request->ajax())
+            {
+                return response()->json(['message' => 'Risk '.$risk->id.': '.$risk->title.' succesfully deleted'],200);
+            }
+        
+            return redirect()->route('tree.show',[$attack->tree->id])->with('success','Risk successfully deleted');
+        
+        }
+
+        if ($request->ajax()) {
+            return response()->json(['message'=>'currently in use'],400);
+        }
+
+        return abort(400);
     }
 
 }

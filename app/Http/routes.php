@@ -63,14 +63,25 @@ Route::group(['middleware' => ['auth', 'heartbeat']], function () {
         ]
     ]);
 
-    Route::resource('tree', 'TreeController');
+    Route::delete('defence/{defence}', ['as'=>'defence.destroy', 'uses' => 'DefenceController@destroy']);
     
+    Route::resource('attack.defence', 'DefenceController', [
+        'names' => [
+            'show' => 'defence.show',
+            'create' => 'defence.create',
+            'store' => 'defence.store',
+            'edit' => 'defence.edit',
+            'update' => 'defence.update'
+        ],
+        'except' => [
+            'index',
+            'destroy'
+        ]
+    ]);
 
-	Route::get('heartbeat', ['middleware' => [/*'throttle:10,1'*/], 'as' => 'heartbeat', 'uses' => 'HeartbeatController@beat']);
+    Route::resource('tree', 'TreeController');    
+
+	Route::get('heartbeat', ['middleware' => ['throttle:10,1'], 'as' => 'heartbeat', 'uses' => 'HeartbeatController@beat']);
 
 	Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
-});
-
-Route::get('lock', function() {
-	\App\Tree::all()->first()->lock();
 });

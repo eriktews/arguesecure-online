@@ -1,10 +1,4 @@
 <div class="form-group form-material">
-  	<label class="control-label" for="tree-public">Public</label>
-	{!! Form::hidden('public', 0) !!}
- 	{!! Form::checkbox('public', 1, null, ['id'=>'tree-public','data-plugin'=>'switchery']) !!}
-</div>
-
-<div class="form-group form-material">
  	<label class="control-label" for="tree-title">Title</label>
  	{!! Form::text('title', null, ['class'=>'form-control', 'id'=>"tree-title"]) !!}
 </div>
@@ -20,6 +14,8 @@
 </div>
 
 <div class="form-group form-material">
-  	<label class="control-label" for="tree-categories">Categories</label>
-  	{!! Form::select('categories[]', \App\Category::all()->pluck('title','slug')->toArray(), $tree->categories->pluck('title','slug')->toArray(), ['class'=>'form-control', 'id'=>"tree-categories", 'data-plugin'=>'select2', 'data-select2-tags'=>'true', 'multiple']) !!}
+  	<label class="control-label" for="defence-attacks">Attacks</label>
+  	{!! Form::select('attacks[]', $attack->siblings()->pluck('title','id')->toArray(), array_unique(array_merge($defence->attacks->pluck('title','id')->toArray(),[$attack->id=>$attack->title])), ['class'=>'form-control', 'id'=>"defence-attacks", 'data-plugin'=>'select2', 'multiple']) !!}
 </div>
+
+{!!Form::hidden('tree',$attack->tree->id)!!}

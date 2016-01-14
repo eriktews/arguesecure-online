@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Attack extends Model
+class Defence extends Model
 {
     public $timestamps = true;
     
-    protected $fillable = ['title','description', 'text'];
+    protected $fillable = ['title','description', 'text', 'tree_id'];
 
     /**
      * Relationships
@@ -16,12 +16,7 @@ class Attack extends Model
     
     public function tree()
     {
-    	return $this->risk->tree();
-    }
-
-    public function risk()
-    {
-    	return $this->belongsTo('\App\Risk');
+        return $this->belongsTo('\App\Tree');
     }
 
     public function updatedBy()
@@ -29,43 +24,37 @@ class Attack extends Model
     	return $this->belongsTo('\App\User','updated_by');
     }
 
-    public function defences()
+    public function attacks()
     {
-        return $this->belongsToMany('\App\Defence');
+        return $this->belongsToMany('\App\Attack');
     }
 
-    public function parent()
+    public function getParentAttribute()
     {
-        return $this->risk;
+        return $this->attacks->first();
     }
 
-    public function siblings()
+    public function getAttackAttribute()
     {
-        return $this->risk->attacks;
+        return $this->attacks->first();
     }
 
     /**
      * Helpers
      */
     
-    public function children()
+    public function getChildrenAttribute()
     {
-        return $this->defences();
+        return new \Illuminate\Database\Eloquent\Collection;
     }
 
     public function getParentIdAttribute()
     {
-        return $this->risk->id;
+        return $this->parent->id;
     }
 
     public function getIsDeletableAttribute()
     {
-        $children = $this->children;
-        foreach($children as $child)
-        {
-            if ( !$child->is_deletable)
-                return false;
-        }
         return !$this->locked;
     }
 

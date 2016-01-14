@@ -16,12 +16,13 @@ return [
     ],
     'Attack' => [
         'parent' => 'Risk',
-        // 'create' => 'Defence',
+        'create' => 'Defence',
     	'icon' => 'fa-bolt',
     	'route' => 'attack',
     	'type' => 'attack'
     ],
     'Defence' => [
+        'parent' => 'Attack',
     	'icon' => 'fa-shield',
     	'route' => 'defence',
     	'type' => 'defence'
