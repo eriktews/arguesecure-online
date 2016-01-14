@@ -15,7 +15,7 @@
 
 <div class="form-group form-material">
   	<label class="control-label" for="defence-attacks">Attacks</label>
-  	{!! Form::select('attacks[]', $attack->siblings()->pluck('title','id')->toArray(), array_unique(array_merge($defence->attacks->pluck('title','id')->toArray(),[$attack->id=>$attack->title])), ['class'=>'form-control', 'id'=>"defence-attacks", 'data-plugin'=>'select2', 'multiple']) !!}
+  	{!! Form::select('attacks[]', $attack->siblings()->pluck('title','id')->toArray(), array_unique(array_merge($defence->attacks->pluck('id')->toArray(), [$attack->id])), ['class'=>'form-control', 'id'=>"defence-attacks", 'data-plugin'=>'select2', 'multiple']) !!}
 </div>
 
 {!!Form::hidden('tree',$attack->tree->id)!!}

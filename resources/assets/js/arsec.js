@@ -270,7 +270,7 @@ function argueTreeVisRenderNodeAjax(id, type, parent)
 		}
 		else {
 			if (parent.id.constructor !== Array) {
-				parent.id = [id];
+				parent.id = [parent.id];
 			}
 			$.each(parent.id, function(i, value) {
 				var parent_selector = '.argue-'+parent.type+'-wrapper[data-'+parent.type+'-id='+value+']';

@@ -31,6 +31,12 @@
 			</div>
 	  	</div>
 	  	@endif
+	  	{{$node->locked}}
+	  	@if(auth()->user()->id!=$node->updated_by)
+	  	TRUE
+	  	@else
+	  	FALSE
+	  	@endif
 	  	@if ( $node->locked && (auth()->user()->id != $node->updated_by) )
         <div class="node-lock"></div>
         @endif
