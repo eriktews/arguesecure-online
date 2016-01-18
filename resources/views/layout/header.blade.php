@@ -31,6 +31,9 @@ data-toggle="collapse">
       <li>
         <a href="{{route('tree.index')}}">Tree list</a>
       </li>
+      <li>
+        <a href="{{route('tree.create')}}">Create new tree</a>
+      </li>
     </ul>
     <!-- End Navbar Toolbar -->
 </div>
