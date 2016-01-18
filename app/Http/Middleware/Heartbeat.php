@@ -27,8 +27,7 @@ class Heartbeat
         $time_between_requests = env('HEARTRATE', 29); //in seconds;
 
 
-        // if ($hearttick == null || 0 + $hearttick + $time_between_requests < time() )
-        if(true)
+        if ($hearttick == null || 0 + $hearttick + $time_between_requests < time() )
         {
             if ($request->has('arsec_update_type') && $request->has('arsec_update_id') && in_array($request->input('arsec_update_type'), $this->lockable))
             {

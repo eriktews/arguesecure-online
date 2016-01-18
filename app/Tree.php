@@ -49,6 +49,11 @@ class Tree extends Model
     }    
     
 
+    public function attacks()
+    {
+        return $this->hasManyThrough('\App\Attack','\App\Risk');
+    }
+
     /**
      * Helpers
      */
