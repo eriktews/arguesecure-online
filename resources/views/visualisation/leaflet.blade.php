@@ -9,7 +9,7 @@
 				@endcan
 				@endif
 				@can ('show', $node)
-			    <li class="argue-node-action"><a class="argue-node-action-create btn btn-icon btn-outline btn-success tooltip-success" data-toggle="tooltip" data-placement="top" href="{{route(TreeNode::get($node,'route').'.show', [TreeNode::get($node,'parent')=>$node->parent_id, TreeNode::get('type', $node)=>$node->id])}}" title="View {{ucfirst(TreeNode::get($node,'type'))}}"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
+			    <li class="argue-node-action"><a class="argue-node-action-create btn btn-icon btn-outline btn-success tooltip-success" data-toggle="tooltip" data-placement="top" href="{{route(TreeNode::get($node,'route').'.show', [TreeNode::get($node,'parent')=>$node->parent_id, TreeNode::get('type', $node)=>$node->id])}}" title="Open {{ucfirst(TreeNode::get($node,'type'))}}"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
 				@endcan
 			    @can ('edit', $node)
 			    <li class="argue-node-action"><a class="argue-node-action-edit btn btn-icon btn-outline btn-info tooltip-info" data-toggle="tooltip" data-placement="top" href="{{route(TreeNode::get($node,'route').'.edit', [TreeNode::get($node,'parent')=>$node->parent_id, TreeNode::get('type', $node)=>$node->id])}}" title="Edit {{ucfirst(TreeNode::get($node,'type'))}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
