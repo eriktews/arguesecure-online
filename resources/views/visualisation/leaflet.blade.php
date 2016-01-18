@@ -5,7 +5,7 @@
 			<ul class="panel-actions argue-node-actions">
 				@if(TreeNode::get($node,'create'))
 			    @can ('append', $node)
-			    <li class="argue-node-action"><a class="argue-node-action-create btn btn-icon btn-outline btn-primary tooltip-primary" data-toggle="tooltip" data-placement="top" href="{{route(TreeNode::get(TreeNode::get($node,'create'),'route').'.create',[TreeNode::get($node,'type')=>$node->id])}}" title="Create New {{ucfirst(TreeNode::get($node,'create'))}}"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+			    <li class="argue-node-action"><a class="argue-node-action-create btn btn-icon btn-outline btn-primary tooltip-primary" data-toggle="tooltip" data-placement="top" href="{{route(TreeNode::get(TreeNode::get($node,'create'),'route').'.create',[TreeNode::get($node,'type')=>$node->id])}}" title="Add {{ucfirst(TreeNode::get($node,'create'))}}"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
 				@endcan
 				@endif
 				@can ('show', $node)
