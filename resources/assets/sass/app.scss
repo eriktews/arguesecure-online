@@ -196,8 +196,19 @@ $children-hover-color: #e4eaec;
 
 .argue-tree-vis-leaf {
 
+
   &.panel {
     margin-bottom: 0;
+    .panel-title {
+      max-width: 300px;
+      white-space: normal;
+    }
+    .panel-body {
+      max-width: 300px;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+
   }
 
   .argue-node-icon {
