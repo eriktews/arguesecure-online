@@ -40,6 +40,8 @@ class RiskController extends Controller
         $new_risk = new Risk($request->all());
         $new_risk->tree()->associate($tree)->save();
 
+        $new_risk->syncTags($request->input('tags'));
+
         return redirect()->route('tree.show',[$tree])->with('succes','Risk successfully created');
     }
 
@@ -93,6 +95,8 @@ class RiskController extends Controller
 
         $risk->update($request->all());
 
+        $risk->syncTags($request->input('tags'));
+        
         return redirect()->route('tree.show', [$tree])->with('success','Risk successfully edited');
     }
 

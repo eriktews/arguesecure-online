@@ -1,6 +1,6 @@
 	<div class="panel argue-tree-vis-leaf argue-{{TreeNode::get($node,'type')}}" data-{{TreeNode::get($node,'type')}}-id="{{$node->id}}">
 		<div class="panel-heading">
-			<h3 class="panel-title node-title"><i class="argue-node-icon fa {{TreeNode::get($node,'icon')}}"></i>{{$node->title}}<i class="argue-node-action-toggle tooltip-dark fa fa-wrench" data-toggle="tooltip" data-placement="top" title="Show Actions"></i></h3>
+			<h3 class="panel-title node-title"><i class="argue-node-icon {{TreeNode::get($node,'icon')}}"></i>{{$node->title}}<i class="argue-node-action-toggle tooltip-dark fa fa-wrench" data-toggle="tooltip" data-placement="top" title="Show Actions"></i></h3>
 			@if(Gate::allows('show', $node) || Gate::allows('edit', $node) || Gate::allows('destroy', $node))
 			<ul class="panel-actions argue-node-actions">
 				@if(TreeNode::get($node,'create'))
@@ -24,13 +24,16 @@
 			</ul>
 	  		@endif
 		</div>
-		@if($node->description)
 		<div class="panel-body argue-node-body">
+			<div class="node-label">
+				@foreach ($node->tags as $tag)
+				<span class="label label-primary" data-tag-id="{{$tag->id}}" @if($tag->color) style="background-color: {{$tag->color}} !important" @endif>{{$tag->title}}</span>
+				@endforeach
+			</div>
 			<div class="node-description">
 				{{$node->description}}
 			</div>
 	  	</div>
-	  	@endif
 	  	@if ( $node->locked && (auth()->user()->id != $node->updated_by) )
         <div class="node-lock"></div>
         @endif

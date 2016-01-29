@@ -45,7 +45,9 @@ class DefenceController extends Controller
         $new_defence->tempAttacks = $request->input('attacks');
         $new_defence->save();
         $new_defence->attacks()->sync($request->input('attacks'));
-        
+       
+        $new_defence->syncTags($request->input('tags'));
+
         return redirect()->route('tree.show',[$attack->tree])->with('succes','Defence successfully created');
     }
 
@@ -101,6 +103,8 @@ class DefenceController extends Controller
         
         $defence->update($request->all());
 
+        $new_defence->syncTags($request->input('tags'));
+        
         return redirect()->route('tree.show', [$defence->tree->id])->with('success','Defence successfully edited');
     }
 

@@ -40,7 +40,5 @@ class DefenceObserver extends BaseObserver
 
         event(new DefenceEvents\DefenceDeleted($defence));
     }
-
-
 	
 }

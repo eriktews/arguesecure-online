@@ -3,27 +3,27 @@
 return [
     'Tree' => [
         'create' => 'Risk',
-    	'icon' => 'fa-sitemap',
+    	'icon' => 'icon-treediagram',
     	'route' => 'tree',
-    	'type' => 'tree'
+    	'type' => 'Assessment'
     ],
     'Risk' => [
     	'parent' => 'Tree',
         'create' => 'Attack',
-        'icon' => 'fa-exclamation-circle',
+        'icon' => 'icon-exclamation-sign',
     	'route' => 'risk',
     	'type' => 'risk'
     ],
     'Attack' => [
         'parent' => 'Risk',
         'create' => 'Defence',
-    	'icon' => 'fa-bolt',
+    	'icon' => 'icon-sword',
     	'route' => 'attack',
     	'type' => 'attack'
     ],
     'Defence' => [
         'parent' => 'Attack',
-    	'icon' => 'fa-shield',
+    	'icon' => 'icon-securityalt-shieldalt',
     	'route' => 'defence',
     	'type' => 'defence'
     ]

@@ -12,27 +12,30 @@
 <div class="navbar-brand navbar-brand-center">
   <span class="navbar-brand-text">Argue Secure</span>
 </div>
-<button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
-data-toggle="collapse">
-<span class="sr-only">Toggle Search</span>
-<i class="icon wb-search" aria-hidden="true"></i>
-</button>
 </div>
 <div class="navbar-container container-fluid">
   <!-- Navbar Collapse -->
   <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
     <!-- Navbar Toolbar -->
     <ul class="nav navbar-toolbar">
+      <li class="hidden-float" id="toggleMenubar">
+        <a data-toggle="menubar" href="#" role="button">
+          <i class="icon hamburger hamburger-arrow-left hided unfolded">
+              <span class="sr-only">Toggle menubar</span>
+              <span class="hamburger-bar"></span>
+            </i>
+        </a>
+      </li>
       <li class="hidden-xs" id="toggleFullscreen">
         <a class="icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
           <span class="sr-only">Toggle fullscreen</span>
         </a>
       </li>
       <li>
-        <a href="{{route('tree.index')}}">Tree list</a>
+        <a href="{{route('tree.index')}}">Assessment list</a>
       </li>
       <li>
-        <a href="{{route('tree.create')}}">Create new tree</a>
+        <a href="{{route('tree.create')}}">Create new assessment</a>
       </li>
     </ul>
     <!-- End Navbar Toolbar -->

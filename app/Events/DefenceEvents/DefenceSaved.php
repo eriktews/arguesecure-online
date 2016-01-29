@@ -28,7 +28,7 @@ class DefenceSaved extends Event implements ShouldBroadcast
         ];
         $this->parent = [
             'type' => 'attack',
-            'id' => $defence->tempAttacks
+            'id' => ($defence->tempAttacks ? $defence->tempAttacks : $defence->attack->id)
         ];
     }
 

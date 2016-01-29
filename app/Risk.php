@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Risk extends Model
+class Risk extends Node
 {
     public $timestamps = true;
     
@@ -58,18 +58,5 @@ class Risk extends Model
         }
         return !$this->locked;
     }
-
-    //Does NOT save
-    public function lock()
-    {
-        $this->lock_time = time() + env('LOCK_TIME', 30);
-        $this->locked = 1;
-    }
-
-    public function unlock()
-    {
-        $this->locked = 0;
-    }
-
 
 }

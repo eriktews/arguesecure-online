@@ -66,7 +66,7 @@
 }
 
 /**
- * Tree category
+ * Tags
  */
 select .full-width {
     width: 100%;
@@ -78,6 +78,14 @@ select .full-width {
 
 .node {
   cursor: pointer;
+}
+
+.tree-view-parent {
+  overflow-x: auto;
+}
+
+.tree-view-body .page {
+  min-height: calc(100%);
 }
 
 $border-width: 1px;
@@ -179,23 +187,7 @@ $children-hover-color: #e4eaec;
   }
 }
 
-// .argue-tree-vis li a:hover,
-// .argue-tree-vis li a:hover+ul li a {
-//     background: $children-hover-color;
-//     color: #fff;
-//     border: $border-width solid $children-hover-color;
-// }
-
-// .argue-tree-vis li a:hover + ul li::after, 
-// .argue-tree-vis li a:hover + ul li::before, 
-// .argue-tree-vis li a:hover + ul::before, 
-// .argue-tree-vis li a:hover + ul ul::before{
-//     border-color:  $children-hover-color;
-// }
-// 
-
 .argue-tree-vis-leaf {
-
 
   &.panel {
     margin-bottom: 0;
@@ -208,7 +200,6 @@ $children-hover-color: #e4eaec;
       word-wrap: break-word;
       white-space: normal;
     }
-
   }
 
   .argue-node-icon {

@@ -40,7 +40,5 @@ class AttackObserver extends BaseObserver
 
         event(new AttackEvents\AttackDeleted($attack));
     }
-
-
 	
 }

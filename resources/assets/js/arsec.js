@@ -3,7 +3,7 @@
  */
 
 //Change this to what suits you
-var socket = io('http://192.168.10.10:3002');
+var socket = io('http://188.24.110.142:3002');
 var heart = laroute.route('heartbeat');
 var heartrate = 30000;
 

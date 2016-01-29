@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Observers\TreeObserver;
 use App\Scopes\TreeVisibleScope;
 
-class Tree extends Model
+class Tree extends Node
 {
     public $timestamps = true;
 
@@ -38,11 +38,6 @@ class Tree extends Model
     	return $this->belongsTo('\App\User','updated_by');
     }
 
-    public function categories()
-    {
-        return $this->belongsToMany('\App\Category');
-    }
-
     public function risks()
     {
         return $this->hasMany('\App\Risk');
@@ -62,18 +57,12 @@ class Tree extends Model
     {
         return $this->risks();
     }
-    
-    public function getShouldUnlockAttribute()
-    {
-        return $this->lock_time < time();
-    }
 
     //Hack to make everything run smooth on update
     public function getParentIdAttribute()
     {
         return $this->id;
     }
-
 
     /**
      * Fake $node->parent
@@ -93,18 +82,6 @@ class Tree extends Model
                 return false;
         }
         return true;
-    }
-    
-    //Does NOT save
-    public function lock()
-    {
-        $this->lock_time = time() + env('LOCK_TIME', 30);
-        $this->locked = 1;
-    }
-
-    public function unlock()
-    {
-        $this->locked = 0;
     }
 
 }

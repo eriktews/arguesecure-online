@@ -25,7 +25,8 @@
   <!-- Fonts -->
   <link rel="stylesheet" href="{{asset('fonts/font-awesome/font-awesome.min.css')}}">
   <link rel="stylesheet" href="{{asset('fonts/web-icons/web-icons.min.css')}}">
-  <link rel="stylesheet" href="{{asset('fonts/brand-icons/brand-icons.min.css')}}">
+  {{-- <link rel="stylesheet" href="{{asset('fonts/brand-icons/brand-icons.min.css')}}"> --}}
+  <link rel="stylesheet" href="{{asset('fonts/webhostinghub-glyphs/whhg.css')}}">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
   <!--[if lt IE 9]>
     <script src="{{asset('vendor/html5shiv/html5shiv.min.js')}}"></script>

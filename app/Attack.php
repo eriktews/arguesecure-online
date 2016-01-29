@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Attack extends Model
+class Attack extends Node
 {
     public $timestamps = true;
     
@@ -68,18 +68,5 @@ class Attack extends Model
         }
         return !$this->locked;
     }
-
-    //Does NOT save
-    public function lock()
-    {
-        $this->lock_time = time() + env('LOCK_TIME', 30);
-        $this->locked = 1;
-    }
-
-    public function unlock()
-    {
-        $this->locked = 0;
-    }
-
 
 }

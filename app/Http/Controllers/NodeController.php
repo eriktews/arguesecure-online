@@ -17,7 +17,7 @@ class NodeController extends Controller
      */
     public function nodeTreeVis(Request $request, $node)
     {
-        // if ( ! $request->ajax() ) return abort(400);
+        if ( ! $request->ajax() ) return abort(400);
 
         return view('visualisation.leaf', [ 'node' => $node ])->render();
     }

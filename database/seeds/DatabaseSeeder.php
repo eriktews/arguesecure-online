@@ -51,6 +51,12 @@ class UserTableSeeder extends Seeder {
             'locked' => 0,
         ]);
 
+        App\Tag::create([
+            'title' => 'social engineering',
+            'slug' => 'social_engineering',
+            'color' => '#FF0000'
+        ]);
+
         $user2 = App\User::create([
             'name' => 'John Doe',
             'email' => 'nimda@arsec.com',

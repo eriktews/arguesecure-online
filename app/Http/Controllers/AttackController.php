@@ -40,6 +40,8 @@ class AttackController extends Controller
         $new_attack = new Attack($request->all());
         $new_attack->risk()->associate($risk)->save();
 
+        $new_attack->syncTags($request->input('tags'));
+
         return redirect()->route('tree.show',[$risk->tree])->with('succes','Attack successfully created');
     }
 
@@ -93,6 +95,8 @@ class AttackController extends Controller
 
         $attack->update($request->all());
 
+        $attack->syncTags($request->input('tags'));
+        
         return redirect()->route('tree.show', [$attack->tree->id])->with('success','Attack successfully edited');
     }
 

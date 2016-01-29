@@ -3,18 +3,12 @@
     <div>
       <div>
         <ul class="site-menu">
-          <li class="site-menu-category"><a href="{{route('tree.index')}}">Trees</a></li>
-          <li class="site-menu-item">
-            <a href="{{route('tree.create')}}">
-              <i class="site-menu-icon fa fa-plus" aria-hidden="true"></i>
-              <span class="site-menu-title">Create new tree</span>
-            </a>
-          </li>
-          @foreach ($sidebar_trees as $tree)
-          <li class="site-menu-item" data-tree-id="{{$tree->id}}">
-            <a href="{{ route('tree.show', ['id' => $tree->id]) }}">
-              <i class="site-menu-icon fa fa-sitemap" aria-hidden="true"></i>
-              <span class="site-menu-title">{{$tree->title}}</span>
+          
+          @foreach ($sidebar_tags as $tag)
+          <li class="site-menu-item" data-tag-id="{{$tag->id}}">
+            <a>
+              <i class="site-menu-icon icon-tag" aria-hidden="true"></i>
+              <span class="site-menu-title">{{$tag->title}}</span>
             </a>
           </li>
           @endforeach

@@ -37,6 +37,8 @@ abstract class BaseObserver
     {        
         $this->isAuth();
         $this->modelIsOwnedByUser($model);
+
+        $model->tags()->sync([]);
     }
 
     /**

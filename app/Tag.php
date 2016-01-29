@@ -3,13 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Scopes\CategoryVisibleScope;
+use App\Scopes\TagVisibleScope;
 
-class Category extends Model
+class Tag extends Model
 {
     public $timestamps = true;
 
-    protected $fillable = ['title', 'slug'];
+    protected $fillable = ['title', 'slug', 'color'];
 
     /**
      * The "booting" method of the model.
@@ -20,7 +20,7 @@ class Category extends Model
     {
         parent::boot();
 
-        static::addGlobalScope(new CategoryVisibleScope);
+        static::addGlobalScope(new TagVisibleScope);
     }
 
     /**
@@ -29,6 +29,11 @@ class Category extends Model
 
     public function trees()
     {
-    	return $this->belongsToMany('\App\Tree');
+    	return $this->belongsToMany('\App\Tree','tags_node');
+    }
+
+    public function risks()
+    {
+        return $this->belongsToMany('\App\Risk','tags_node');
     }
 }

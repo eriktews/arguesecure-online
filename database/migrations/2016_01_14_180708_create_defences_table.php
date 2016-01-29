@@ -24,6 +24,8 @@ class CreateDefencesTable extends Migration
             $table->integer('tree_id')->unsigned()->nullable();
             $table->foreign('tree_id')->references('id')->on('trees')->onDelete('cascade');
 
+            $table->tinyInteger('is_transfer')->unsigned();
+
             $table->tinyInteger('locked');
             
             $table->bigInteger('lock_time')->unsigned();

@@ -44,7 +44,5 @@ class RiskObserver extends BaseObserver
 
         event(new RiskEvents\RiskDeleted($risk));
     }
-
-
 	
 }

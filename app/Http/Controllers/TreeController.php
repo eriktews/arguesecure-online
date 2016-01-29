@@ -47,7 +47,7 @@ class TreeController extends Controller
     {
         $new_tree = Tree::create($request->all());
 
-        $this->syncCategories($new_tree, $request->input('categories'));
+        $new_tree->syncCategories($request->input('tags'));
         
         return redirect()->route('tree.show',$new_tree->id)->with('succes','Tree successfully created');
     }
@@ -96,13 +96,13 @@ class TreeController extends Controller
      */
     public function update(TreeRequest $request, $tree)
     {        
-        $this->syncCategories($tree, $request->input('categories'));
-
         $this->authorize('update', $tree);
 
         $tree->unlock();
 
         $tree->update($request->all());
+
+        $tree->syncTags($request->input('tags'));
 
         return redirect()->route('tree.index')->with('success','Tree successfully edited');
     }
@@ -134,38 +134,6 @@ class TreeController extends Controller
         }
 
         return abort(400);
-    }
-
-    /**
-     * Category functions
-     */
-    private function syncCategories($tree, $categories)
-    {
-        if ( !is_array($categories) ) return 1;
-
-        $slugged = array_map('str_slug', $categories);
-
-        $tree->categories()->sync([]);
-        //For each tag check if it exists, if so, then attach it, if not, create it
-        foreach ($slugged as $key => $value) {
-            if ($value != "") {
-                if (!$category = \App\Category::where('slug','=',str_slug($value))->first())
-                {
-                    $category = \App\Category::create(['title'=>$categories[$key],'slug'=>$value]);
-                }
-                $tree->categories()->attach($category->id);
-            }
-        }
-
-        $this->pruneCategories();
-
-    }
-
-    private function pruneCategories()
-    {
-        $empty_categories = \App\Category::doesntHave('trees')->get(['id'])->pluck('id')->toArray();
-
-        \App\Category::destroy($empty_categories);
     }
 
     /**

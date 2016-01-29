@@ -7,12 +7,9 @@ use Illuminate\Users\Repository as UserRepository;
 
 class SidebarViewComposer
 {
-   
-    protected $sidebar_trees;
-    
+       
     public function __construct()
     {
-        $this->sidebar_trees = \App\Tree::get(['id','title']);
     }
 
     /**
@@ -23,6 +20,21 @@ class SidebarViewComposer
      */
     public function compose(View $view)
     {
-        $view->with('sidebar_trees', $this->sidebar_trees);
+        $sidebar_tags = [];
+
+        if ($view_data = $view->getData()) {
+            if (array_key_exists('tree', $view_data))
+                $sidebar_tags = $view_data['tree']->getAllTags();
+            elseif (array_key_exists('risk', $view_data))
+                $sidebar_tags = $view_data['risk']->getAllTags();
+            elseif (array_key_exists('attack', $view_data))
+                $sidebar_tags = $view_data['attack']->getAllTags();
+            elseif (array_key_exists('defence', $view_data))
+                $sidebar_tags = $view_data['defence']->getAllTags();
+        }
+
+        debug($sidebar_tags);
+
+        $view->with('sidebar_tags', $sidebar_tags);
     }
 }
