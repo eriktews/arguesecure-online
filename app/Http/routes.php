@@ -24,6 +24,9 @@ Route::post('login', ['as' => 'login-post', 'uses' => 'Auth\AuthController@postL
 Route::group(['middleware' => ['auth', 'heartbeat']], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'TreeController@index']);
 
+    Route::post('/ajax/node/startUpdate', ['as' => 'node.ajax.startUpdate', 'uses' => 'NodeController@nodeStartUpdate']);
+    Route::post('/ajax/node/stopUpdate', ['as' => 'node.ajax.stopUpdate', 'uses' => 'NodeController@nodeStopUpdate']);
+
     Route::get('/ajax/tree/{tree}', ['as' => 'tree.ajax', 'uses' => 'TreeController@ajax']);
 
     Route::get('/ajax/node/tree/{tree}', ['as' => 'node.ajax.tree', 'uses' => 'NodeController@nodeTreeVis']);

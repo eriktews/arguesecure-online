@@ -33,16 +33,10 @@ class Tree extends Node
     	return $this->belongsTo('\App\User');
     }
 
-    public function updatedBy()
-    {
-    	return $this->belongsTo('\App\User','updated_by');
-    }
-
     public function risks()
     {
         return $this->hasMany('\App\Risk');
-    }    
-    
+    }
 
     public function attacks()
     {

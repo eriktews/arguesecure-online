@@ -13,7 +13,7 @@ trees-create-page
 	
 	<div class="panel-body container-fluid">
 
-		{!! Form::model($tree = new \App\Tree(), ['route' => 'tree.store', 'autocomplete'=>'off']) !!}
+		{!! Form::model($tree = new \App\Tree(['public'=>1]), ['route' => 'tree.store', 'autocomplete'=>'off']) !!}
 		
 		@include('partials.tree_form')
 

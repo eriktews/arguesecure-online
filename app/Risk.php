@@ -19,11 +19,6 @@ class Risk extends Node
     	return $this->belongsTo('\App\Tree');
     }
 
-    public function updatedBy()
-    {
-    	return $this->belongsTo('\App\User','updated_by');
-    }
-
     public function parent()
     {
         return $this->tree;

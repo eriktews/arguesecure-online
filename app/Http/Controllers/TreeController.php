@@ -47,7 +47,7 @@ class TreeController extends Controller
     {
         $new_tree = Tree::create($request->all());
 
-        $new_tree->syncCategories($request->input('tags'));
+        $new_tree->syncTags($request->input('tags'));
         
         return redirect()->route('tree.show',$new_tree->id)->with('succes','Tree successfully created');
     }

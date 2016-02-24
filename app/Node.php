@@ -10,9 +10,16 @@ class Node extends Model
 {
     public $timestamps = true;
 
+    protected $with = ['updatedBy'];
+
     public function tags()
     {
         return $this->belongsToMany('\App\Tag','tags_node');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo('\App\User','updated_by');
     }
 
     public function getShouldUnlockAttribute()

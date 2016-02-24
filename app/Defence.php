@@ -21,11 +21,6 @@ class Defence extends Node
         return $this->belongsTo('\App\Tree');
     }
 
-    public function updatedBy()
-    {
-    	return $this->belongsTo('\App\User','updated_by');
-    }
-
     public function attacks()
     {
         return $this->belongsToMany('\App\Attack');

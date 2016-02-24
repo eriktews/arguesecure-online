@@ -33,8 +33,6 @@ class SidebarViewComposer
                 $sidebar_tags = $view_data['defence']->getAllTags();
         }
 
-        debug($sidebar_tags);
-
         $view->with('sidebar_tags', $sidebar_tags);
     }
 }

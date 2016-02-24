@@ -26,7 +26,6 @@ class Heartbeat
 
         $time_between_requests = env('HEARTRATE', 29); //in seconds;
 
-
         if ($hearttick == null || 0 + $hearttick + $time_between_requests < time() )
         {
             if ($request->has('arsec_update_type') && $request->has('arsec_update_id') && in_array($request->input('arsec_update_type'), $this->lockable))
@@ -45,6 +44,10 @@ class Heartbeat
 
     private function updateLock($modelClass, $id)
     {
+        if ( ! class_exists($this->namespace.'\\'.$modelClass) ) {
+            return response()->json('Tsk tsk tsk', 500);
+        }
+
         $modelClass = new \ReflectionClass($this->namespace.'\\'.$modelClass);
 
         if ( $modelClass->hasMethod('lock') )
@@ -57,7 +60,8 @@ class Heartbeat
                 return response()->json('Tsk tsk tsk', 403);
             }
 
-            if ($model->locked) {
+            if ($model->locked) 
+            {
                 $model->lock();
                 $model->save();
             }
@@ -66,6 +70,10 @@ class Heartbeat
 
     private function unlockModel($modelClass)
     {
+        if ( ! class_exists($this->namespace.'\\'.$modelClass) ) {
+            return response()->json('Tsk tsk tsk', 500);
+        }
+
         $modelClass = new \ReflectionClass($this->namespace.'\\'.$modelClass);
         if ( $modelClass->hasMethod('unlock') )
         {

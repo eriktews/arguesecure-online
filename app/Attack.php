@@ -24,11 +24,6 @@ class Attack extends Node
     	return $this->belongsTo('\App\Risk');
     }
 
-    public function updatedBy()
-    {
-    	return $this->belongsTo('\App\User','updated_by');
-    }
-
     public function defences()
     {
         return $this->belongsToMany('\App\Defence');
