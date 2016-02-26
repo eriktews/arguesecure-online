@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder {
             'email' => 'admin@arsec.com',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now(),
-            'password' => bcrypt('password'),
+            'password' => bcrypt('r2g9R8hJBXazT23g'),
         ]);
 
         Auth::attempt(['email'=>'admin@arsec.com','password'=>'password']);

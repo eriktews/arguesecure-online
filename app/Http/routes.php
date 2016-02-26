@@ -18,11 +18,17 @@
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
 Route::post('login', ['as' => 'login-post', 'uses' => 'Auth\AuthController@postLogin']);
 
+Route::get('/instructions', ['as' => 'instructions', 'uses' => 'StaticPageController@instructions']);
+
 /**
  * With Auth Middleware
  */
 Route::group(['middleware' => ['auth', 'heartbeat']], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'TreeController@index']);
+
+    Route::get('/help', ['as' => 'help', 'uses' => 'StaticPageController@help']);
+
+    Route::get('/superuser', ['as' => 'superuser', 'uses' => 'StaticPageController@superuser']);
 
     Route::post('/ajax/node/startUpdate', ['as' => 'node.ajax.startUpdate', 'uses' => 'NodeController@nodeStartUpdate']);
     Route::post('/ajax/node/stopUpdate', ['as' => 'node.ajax.stopUpdate', 'uses' => 'NodeController@nodeStopUpdate']);

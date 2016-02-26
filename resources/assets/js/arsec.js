@@ -3,7 +3,7 @@
  */
 
 //Change this to what suits you
-var socket = io('http://argue.app:3002');
+var socket = io(websocketip);
 var heart = laroute.route('heartbeat');
 var heartrate = 30000;
 
@@ -63,6 +63,13 @@ socket.on("argue:App\\Events\\TreeEvents\\TreeDeleted", function(message)
 	if (message.tree.public == 0 && (message.tree.user_id != arsec.user.id)) 
 	{
 		return false;
+	}
+
+	var tree = $('.argue-tree').data('tree-id');
+
+	if (tree == message.tree.id) {
+		alert("This tree has been deleted and you will be redirected to the assessment list");
+		window.location = laroute.route('home');
 	}
 
 	argueDeleteTree(message.tree.id);
@@ -223,6 +230,7 @@ function argueTreeVisRemoveNode(message, type)
 		});
 	}
 	toastr.info(message[type].updated_by.name + ' has deleted '+ type + ': '+message[type].title);
+	updateTags();
 
 }
 
@@ -286,7 +294,7 @@ function argueTreeVisRenderNodeAjax(id, type, parent)
 				$(ul).append(data);
 			});
 		}
-
+		updateTags();
 	})
 	.fail(function() {
 		toastr.error('Could not get updated node information :(');
@@ -295,13 +303,25 @@ function argueTreeVisRenderNodeAjax(id, type, parent)
 
 $('.argue-tree-vis').on('click','.argue-node-description-toggle', function(event) { 
 	var elem = $(this).closest('.argue-tree-vis-leaf');
-	if ($(elem).hasClass('argue-node-body-open')) {
-		$(elem).removeClass('argue-node-body-open');
-		$(elem).children('.argue-node-body').velocity("slideUp", { duration: 300 });
+	if ($(elem).hasClass('argue-node-description-open')) {
+		$(elem).removeClass('argue-node-description-open');
+		$(elem).find('.argue-node-body .node-description-wrapper').velocity("slideUp", { duration: 300 });
 	}
 	else {
-		$(elem).addClass('argue-node-body-open');
-		$(elem).children('.argue-node-body').velocity("slideDown", { duration: 300 });
+		$(elem).addClass('argue-node-description-open');
+		$(elem).find('.argue-node-body .node-description-wrapper').velocity("slideDown", { duration: 300 });
+	}
+});
+
+$('.argue-tree-vis').on('click','.argue-node-notes-toggle', function(event) { 
+	var elem = $(this).closest('.argue-tree-vis-leaf');
+	if ($(elem).hasClass('argue-node-notes-open')) {
+		$(elem).removeClass('argue-node-notes-open');
+		$(elem).find('.argue-node-body .node-notes-wrapper').velocity("slideUp", { duration: 300 });
+	}
+	else {
+		$(elem).addClass('argue-node-notes-open');
+		$(elem).find('.argue-node-body .node-notes-wrapper').velocity("slideDown", { duration: 300 });
 	}
 });
 
@@ -444,6 +464,103 @@ function showLoader(element)
 function hideLoader(element)
 {
 	$(element).closest('.input-switch').children('.loading').hide();
+}
+
+/**
+ * Tags section
+ */
+
+var filters = [];
+
+$('body').on('click','.node-tag', function(event) {
+	var tag_id = $(this).data('tag-id');
+	$('.site-menu-item-custom').each(function() {
+		if ($(this).data('tag-id') == tag_id)
+			$(this).toggleClass('site-menu-item-custom-selected');
+	});
+	filterTag(tag_id);
+});
+
+$('.clear-filters').click(function(event) {
+	clearFilters();
+});
+
+function filterTag(id)
+{
+	if (filters.indexOf(id) == -1) filters.push(id);
+	else filters.splice(filters.indexOf(id),1);
+	filterTags();
+}
+
+function clearFilters()
+{
+	filters = [];
+	$('.site-menu-item-custom').removeClass('site-menu-item-custom-selected');
+	filterTags();
+}
+
+function updateTags()
+{
+	var tags = {};
+	var menu_tags = {};
+	$('.argue-tree-vis-leaf').each(function() {
+		$(this).find('.node-tag').each(function() {
+			if (!tags.hasOwnProperty($(this).data('tag-id'))) tags[$(this).data('tag-id')]={slug: $(this).data('tag-slug'), text: $(this).text()};
+		});
+	});
+
+	$('.site-menu .node-tag').each(function() {
+		if (!$(this).data('tag-slug')) return true;
+		menu_tags[$(this).data('tag-id')]=$(this).data('tag-slug');
+	});
+
+	console.log(tags);
+	console.log(menu_tags);
+	$('.site-menu .node-tag').each(function() {
+		if (!$(this).data('tag-slug')) return true;
+		if (!($(this).data('tag-id') in tags)) {console.log(this); $(this).remove()};
+	});
+
+	$.each(tags, function(index, value) {
+		if ( !(index in menu_tags)) {
+			var added=false;
+			$('.site-menu .node-tag').each(function() {
+				if (!$(this).data('tag-slug')) return true;
+
+				if ($(this).data('tag-slug').localeCompare(value.slug) == 1 && !added) {
+					var newtag = $('.site-menu .empty-tag').clone();
+					$(newtag).removeClass('empty-tag').insertBefore(this).data('tag-id', index).data('tag-slug',value.slug).find('.site-menu-title').text(value.text);
+					added=true;
+				}
+			});
+			if (!added) {
+				var newtag = $('.site-menu .empty-tag').clone();
+				$(newtag).removeClass('empty-tag').insertBefore($('.site-menu .empty-tag')).data('tag-id', index).data('tag-slug',value.slug).find('.site-menu-title').text(value.text);
+			}	
+		}
+	});
+
+}
+
+function filterTags()
+{
+	$('.argue-tree-vis-leaf').each(function() {
+		$(this).removeClass('filtered');
+		var filter = false;
+		$(this).find('.node-tag').each(function() {
+			for (var i = filters.length - 1; i >= 0; i--) {
+				if ($(this).data('tag-id') == filters[i])
+				{
+					filter = true;
+					return false;
+				}
+			}
+		});
+		if (filter) 
+		{
+			$(this).addClass('filtered');
+		}
+	});
 }
 
 /**

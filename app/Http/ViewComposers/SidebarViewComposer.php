@@ -22,15 +22,9 @@ class SidebarViewComposer
     {
         $sidebar_tags = [];
 
-        if ($view_data = $view->getData()) {
-            if (array_key_exists('tree', $view_data))
-                $sidebar_tags = $view_data['tree']->getAllTags();
-            elseif (array_key_exists('risk', $view_data))
-                $sidebar_tags = $view_data['risk']->getAllTags();
-            elseif (array_key_exists('attack', $view_data))
-                $sidebar_tags = $view_data['attack']->getAllTags();
-            elseif (array_key_exists('defence', $view_data))
-                $sidebar_tags = $view_data['defence']->getAllTags();
+        if (isset($view->getData()['tree']))
+        {
+            $sidebar_tags = $view->getData()['tree']->getAllTags();
         }
 
         $view->with('sidebar_tags', $sidebar_tags);

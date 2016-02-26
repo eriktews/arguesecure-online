@@ -7,7 +7,8 @@
 	padding-top: 0;
 }
 
-.login-page .page
+.login-page .page,
+.instructions-page .page
 {
 	min-height: 100%;
 	background: #F1F4F5;
@@ -26,6 +27,14 @@
 .site-menubar-footer > a 
 {
 	width: 100%;
+}
+
+/**
+ * Instructions page
+ */
+
+.instructions-page .page ul {
+  padding-left: 0;
 }
 
 /**
@@ -210,17 +219,27 @@ $children-hover-color: #e4eaec;
     .panel-title {
       max-width: 300px;
       white-space: normal;
+      padding: 20px 30px 10px;
     }
     .panel-body {
       max-width: 300px;
       word-wrap: break-word;
       white-space: normal;
+      padding: 0 30px;
     }
+  }
+
+  &.filtered {
+    opacity: 0.5;
   }
 
   .argue-node-icon {
     display: block;
     opacity: 0.95;
+    font-size: 10px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
   }
 
   .argue-node-toggle {
@@ -257,7 +276,16 @@ $children-hover-color: #e4eaec;
     }
   }
 
-  .argue-node-body,
+  .argue-node-body {
+    h5 {
+      margin-bottom: 0px;
+    }
+    .node-description-wrapper,
+    .node-notes-wrapper {
+      display: none;
+    }
+  }
+
   .argue-node-actions {
     display: none;
   }
@@ -364,4 +392,36 @@ $children-hover-color: #e4eaec;
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.site-menu-item-custom.empty-tag {
+  display: none !important;
+}
+
+.site-menubar-unfold .site-menu > .site-menu-item-custom > a {
+    padding: 0 30px;
+    line-height: 46px;
+}
+.site-menu-item-custom a {
+    display: block;
+    color: rgba(163,175,183,.9);
+}
+.site-menu-item-custom > a {
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.site-menu-item-custom:hover {
+  background: #394349;
+}
+
+.site-menu-item-custom-selected {
+  background: #1c252a;
+}
+
+/**
+ * PDF
+ */
+.page-break {
+    page-break-after: always;
 }

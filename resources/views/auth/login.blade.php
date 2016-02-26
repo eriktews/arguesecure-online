@@ -48,7 +48,11 @@ login-page layout-full
                         {{-- <a class="pull-right" href="forgot-password.html">Forgot password?</a> --}}
                     </div>
                     <button type="submit" class="btn btn-primary btn-block btn-lg margin-top-40">Sign in</button>
-                  </form>   
+                </form>
+
+                <div>
+                    <a href={{route('instructions')}} target="_blank">Click here to read the instructions</a>
+                </div>   
             </div>
         </div>
         

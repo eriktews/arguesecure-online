@@ -21,6 +21,6 @@
 
 {{-- <div class="form-group form-material">
   	<label class="control-label" for="tree-tags">Tags</label>
-  	{!! Form::select('tags[]', \App\Tag::all()->pluck('title','slug')->toArray(), $tree->tags->pluck('title','slug')->toArray(), ['class'=>'form-control', 'id'=>"tree-tags", 'data-plugin'=>'select2', 'data-select2-tags'=>'true', 'multiple']) !!}
+  	{!! Form::select('tags[]', \App\Tag::all()->pluck('title','slug')->toArray(), $tree->tags->pluck('slug')->toArray(), ['class'=>'form-control', 'id'=>"tree-tags", 'data-plugin'=>'select2', 'data-select2-tags'=>'true', 'multiple']) !!}
 </div>
  --}}

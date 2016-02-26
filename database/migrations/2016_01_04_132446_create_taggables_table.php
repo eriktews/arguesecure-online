@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsTable extends Migration
+class CreateTaggablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,11 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('slug')->index();
-            $table->string('color');
-            $table->timestamps();
+            $table->integer('tag_id')->unsigned()->index();
+            $table->string('taggable_type')->index();
+            $table->integer('taggable_id')->unsigned()->index();
         });
     }
 
@@ -28,6 +27,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tags');
+        Schema::drop('taggables');
     }
 }

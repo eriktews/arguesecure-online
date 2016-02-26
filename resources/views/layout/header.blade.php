@@ -32,6 +32,9 @@
         </a>
       </li>
       <li>
+        <a class="icon" href="{{route('help')}}"><i class="fa fa-question-circle"></i></a>
+      </li>
+      <li>
         <a href="{{route('tree.index')}}">Assessment list</a>
       </li>
       <li>

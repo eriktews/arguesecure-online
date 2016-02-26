@@ -12,11 +12,6 @@ class Node extends Model
 
     protected $with = ['updatedBy'];
 
-    public function tags()
-    {
-        return $this->belongsToMany('\App\Tag','tags_node');
-    }
-
     public function updatedBy()
     {
         return $this->belongsTo('\App\User','updated_by');
@@ -25,6 +20,11 @@ class Node extends Model
     public function getShouldUnlockAttribute()
     {
         return $this->lock_time < time();
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany('App\Tag', 'taggable')->orderBy('slug');
     }
     
     //Does NOT save
@@ -81,7 +81,7 @@ class Node extends Model
     private function pruneTags()
     {
         $all_tags = \App\Tag::withoutGlobalScopes()->get()->pluck('id')->toArray();
-        $used_tags = DB::table('tags_node')->distinct()->lists('tag_id');
+        $used_tags = DB::table('taggables')->distinct()->lists('tag_id');
         $unused_tags = array_diff($all_tags,$used_tags);
 
         $instance = new static;
@@ -93,6 +93,11 @@ class Node extends Model
         }
     }
 
+    public function getAllTagsAttribute()
+    {
+        return $this->getAllTags();
+    }
+
     public function getAllTags()
     {
         $tags = $this->tags;
@@ -102,7 +107,7 @@ class Node extends Model
             $tags = $tags->merge($child->getAllTags()); 
         }
 
-        return $tags;
+        return $tags->sortBy('slug');
     }
 
 }

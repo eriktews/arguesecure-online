@@ -29,11 +29,21 @@ class Tag extends Model
 
     public function trees()
     {
-    	return $this->belongsToMany('\App\Tree','tags_node');
+    	return $this->morphByMany('\App\Tree','taggable');
     }
 
     public function risks()
     {
-        return $this->belongsToMany('\App\Risk','tags_node');
+        return $this->morphByMany('\App\Risk','taggable');
+    }
+
+    public function attacks()
+    {
+        return $this->morphByMany('\App\Attack','taggable');
+    }
+
+    public function defences()
+    {
+        return $this->morphByMany('\App\Defence','taggable');
     }
 }

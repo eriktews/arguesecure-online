@@ -86,6 +86,9 @@
   <script src="{{asset('js/components/jquery-placeholder.js')}}"></script>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
   @if (Auth::check())
+  <script>
+  var websocketip = "{{env('WEBSOCKET_IP','http://argue.app').':'.env('WEBSOCKET_PORT','3002')}}";
+  </script>
   @include('layout.javascript');
   <script src="{{asset('js/laroute.js')}}"></script>
   <script src="{{asset('js/arsec.js')}}"></script>

@@ -21,7 +21,7 @@ class CreateDefencesTable extends Migration
             
             $table->text('text');
 
-            $table->integer('tree_id')->unsigned()->nullable();
+            $table->integer('tree_id')->unsigned()->nullable()->index();
             $table->foreign('tree_id')->references('id')->on('trees')->onDelete('cascade');
 
             $table->tinyInteger('is_transfer')->unsigned();
@@ -39,10 +39,10 @@ class CreateDefencesTable extends Migration
         Schema::create('attack_defence', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->integer('defence_id')->unsigned()->nullable();
+            $table->integer('defence_id')->unsigned()->nullable()->index();
             $table->foreign('defence_id')->references('id')->on('defences')->onDelete('cascade');
             
-            $table->integer('attack_id')->unsigned()->nullable();
+            $table->integer('attack_id')->unsigned()->nullable()->index();
             $table->foreign('attack_id')->references('id')->on('attacks')->onDelete('cascade');
         });
     }
