@@ -21,8 +21,9 @@ instructions-page layout-full
 				<h5>Actions</h5>
 
 				<ul>
-					<li>Create user</li>
-                    <li>Print PDF from CSV</li>
+					<li><a href="{{route('superuser.useradmin')}}">View user list</a></li>
+                    <li><a href="{{route('superuser.csvuser')}}">Add users from CSV</a></li>
+                    <li><a href="{{route('superuser.pdfsheet')}}">Print PDF from CSV</a></li>
 				</ul>
                 
             </div>

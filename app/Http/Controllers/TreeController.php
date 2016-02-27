@@ -136,9 +136,9 @@ class TreeController extends Controller
         return abort(400);
     }
 
-    public function exportTree(Request $request, $tree)
+    public function export(Request $request, $tree)
     {
-        if ($request->user()-cannot('view',$tree)) {
+        if ($request->user()->cannot('show',$tree)) {
             return abort(403);
         }
         return view('tree.export')->with([

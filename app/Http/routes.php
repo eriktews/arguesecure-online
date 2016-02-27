@@ -29,6 +29,11 @@ Route::group(['middleware' => ['auth', 'heartbeat']], function () {
     Route::get('/help', ['as' => 'help', 'uses' => 'StaticPageController@help']);
 
     Route::get('/superuser', ['as' => 'superuser', 'uses' => 'StaticPageController@superuser']);
+    Route::get('/superuser/pdfsheet', ['as' => 'superuser.pdfsheet', 'uses' => 'StaticPageController@pdfsheet']);
+    Route::get('/superuser/csvuser', ['as' => 'superuser.csvuser', 'uses' => 'StaticPageController@csvusercreate']);
+    Route::get('/superuser/useradmin', ['as' => 'superuser.useradmin', 'uses' => 'StaticPageController@useradmin']);
+    Route::post('/superuser/useradmin/createuser', ['as' => 'superuser.useradmin.create', 'uses' => 'StaticPageController@createUser']);
+    Route::delete('/superuser/useradmin/{user}/deleteuser', ['as' => 'superuser.useradmin.delete', 'uses' => 'StaticPageController@deleteUser']);
 
     Route::post('/ajax/node/startUpdate', ['as' => 'node.ajax.startUpdate', 'uses' => 'NodeController@nodeStartUpdate']);
     Route::post('/ajax/node/stopUpdate', ['as' => 'node.ajax.stopUpdate', 'uses' => 'NodeController@nodeStopUpdate']);
@@ -88,7 +93,9 @@ Route::group(['middleware' => ['auth', 'heartbeat']], function () {
         ]
     ]);
 
-    Route::resource('tree', 'TreeController');    
+    Route::get('tree/{tree}/export', ['as'=>'tree.export', 'uses' => 'TreeController@export']);
+
+    Route::resource('tree', 'TreeController');
 
 	Route::get('heartbeat', ['middleware' => ['throttle:10,1'], 'as' => 'heartbeat', 'uses' => 'HeartbeatController@beat']);
 

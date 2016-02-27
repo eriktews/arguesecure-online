@@ -9,8 +9,8 @@ This year, we are running a live study throughout the duration of the conference
 
 <p>
 Your personal, anonymous credentials are:<br>
-Username: <strong>{{$user->name}}</strong><br>
-Password: <strong>{{$user->password}}</strong><br>
+Username: <strong>{{$user['email']}}</strong><br>
+Password: <strong>{{$user['password']}}</strong><br>
 
 <p>Also at any time during the conference, but preferably after you have familiarized yourself with the ArgueSecure tool, please access our online questionnaire to rate the experience: <a href="{{$questionnaireUrl}}">{{$questionnaireUrl}}</a></p>
 
