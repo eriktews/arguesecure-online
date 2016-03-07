@@ -33,8 +33,8 @@ login-page layout-full
                 <form method="POST" action="{{ url('login') }}">
                     {!! csrf_field() !!}
                     <div class="form-group form-material floating">
-                        <input class="form-control" type="email" name="email" value="{{ old('email') }}">
-                        <label class="floating-label">Email</label>
+                        <input class="form-control" type="text" name="email" value="{{ old('email') }}">
+                        <label class="floating-label">Username</label>
                     </div>
                     <div class="form-group form-material floating">
                         <input id="password" class="form-control" type="password" name="password" value="{{ old('email') }}">
