@@ -2,8 +2,3 @@
 /node_modules
 Homestead.yaml
 Homestead.json
-/public/css
-/public/js
-/public/global
-/public/examples
-/public/skins
