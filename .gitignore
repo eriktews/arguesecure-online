@@ -2,11 +2,9 @@
 /node_modules
 Homestead.yaml
 Homestead.json
-.env
 /public/css
 /public/js
 /public/global
-/public/fonts
 /public/examples
 /public/skins
 /public/vendor
