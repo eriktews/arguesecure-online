@@ -21,7 +21,7 @@ class CreateTreesTable extends Migration
 
             $table->text('text');
 
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->tinyInteger('public');
@@ -32,7 +32,7 @@ class CreateTreesTable extends Migration
 
             $table->timestamps();
 
-            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable()->index();
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
         });
     }

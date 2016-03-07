@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder {
             'email' => 'admin@arsec.com',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now(),
-            'password' => bcrypt('password'),
+            'password' => bcrypt('r2g9R8hJBXazT23g'),
         ]);
 
         Auth::attempt(['email'=>'admin@arsec.com','password'=>'password']);
@@ -49,6 +49,12 @@ class UserTableSeeder extends Seeder {
             'user_id' => $user->id,
             'updated_by' => $user->id,
             'locked' => 0,
+        ]);
+
+        App\Tag::create([
+            'title' => 'social engineering',
+            'slug' => 'social_engineering',
+            'color' => '#FF0000'
         ]);
 
         $user2 = App\User::create([

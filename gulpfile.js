@@ -1,10 +1,10 @@
 var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
-    mix.less('app.less');
+    mix.sass('app.scss');
 	mix.styles('site.min.css');
     mix.scripts([
-    	'arsec.js',
+    	'arsec.js'
     ],'public/js/arsec.js');
     mix.browserSync({
     	files: [

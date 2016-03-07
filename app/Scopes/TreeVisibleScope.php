@@ -19,6 +19,5 @@ class TreeVisibleScope implements Scope
     {
         if (auth()->check())
             return $builder->distinct()->where('public', '=', 1)->orWhere('user_id','=',auth()->user()->id)->with('user');
-        return $builder->distinct()->where('public', '=', 1)->with('user');
     }
 }

@@ -13,8 +13,6 @@ class RiskObserver extends BaseObserver
     public function created($risk)
     {
         parent::created($risk);
-        
-        event(new RiskEvents\RiskCreated($risk));
     }
 
     public function updating($risk)
@@ -38,11 +36,13 @@ class RiskObserver extends BaseObserver
 
     public function deleting($risk)
     {
+        if (!$risk->is_deletable) {
+            return false;
+        }
+
         parent::deleting($risk);
 
         event(new RiskEvents\RiskDeleted($risk));
     }
-
-
 	
 }

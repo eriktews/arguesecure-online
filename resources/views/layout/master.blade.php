@@ -25,7 +25,8 @@
   <!-- Fonts -->
   <link rel="stylesheet" href="{{asset('fonts/font-awesome/font-awesome.min.css')}}">
   <link rel="stylesheet" href="{{asset('fonts/web-icons/web-icons.min.css')}}">
-  <link rel="stylesheet" href="{{asset('fonts/brand-icons/brand-icons.min.css')}}">
+  {{-- <link rel="stylesheet" href="{{asset('fonts/brand-icons/brand-icons.min.css')}}"> --}}
+  <link rel="stylesheet" href="{{asset('fonts/webhostinghub-glyphs/whhg.css')}}">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
   <!--[if lt IE 9]>
     <script src="{{asset('vendor/html5shiv/html5shiv.min.js')}}"></script>
@@ -85,10 +86,14 @@
   <script src="{{asset('js/components/jquery-placeholder.js')}}"></script>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
   @if (Auth::check())
+  <script>
+  var websocketip = "{{env('WEBSOCKET_IP','http://argue.app').':'.env('WEBSOCKET_PORT','3002')}}";
+  </script>
   @include('layout.javascript');
   <script src="{{asset('js/laroute.js')}}"></script>
   <script src="{{asset('js/arsec.js')}}"></script>
   @endif
+  @yield('scripts')
   <script>
   (function(document, window, $) {
     'use strict';

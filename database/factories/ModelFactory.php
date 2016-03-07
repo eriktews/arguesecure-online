@@ -27,9 +27,11 @@ $factory->define(App\Tree::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Category::class, function (Faker\Generator $faker) {
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->word
+        'title' => $faker->word,
+        'description' => str_slug($faker->word),
+        'color' => $faker->color
     ];
 });
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class CategoryVisibleScope implements Scope
+class TagVisibleScope implements Scope
 {
     /**
      * Apply the scope to a given Eloquent query builder.
@@ -17,12 +17,13 @@ class CategoryVisibleScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        if (auth()->check())
-            return $builder->whereHas('trees', function($query) { 
-                $query->where(function($query) {
-                    return $query->where('public','=', 1)
-                        ->orWhere('user_id','=',auth()->user()->id);
-                });
-            });
+        // if (auth()->check())
+        //     return $builder->whereHas('trees', function($query) { 
+        //         $query->where(function($query) {
+        //             return $query->where('public','=', 1)
+        //                 ->orWhere('user_id','=',auth()->user()->id);
+        //         });
+        //     });
+        return $builder;
     }
 }

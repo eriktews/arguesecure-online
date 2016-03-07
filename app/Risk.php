@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Risk extends Model
+class Risk extends Node
 {
     public $timestamps = true;
     
-    protected $fillable = ['name','text'];
+    protected $fillable = ['title','description', 'text'];
 
     /**
      * Relationships
@@ -19,9 +19,39 @@ class Risk extends Model
     	return $this->belongsTo('\App\Tree');
     }
 
-    public function updatedBy()
+    public function parent()
     {
-    	return $this->belongsTo('\App\User','updated_by');
+        return $this->tree;
+    }
+
+    public function attacks()
+    {
+        return $this->hasMany('\App\Attack');
+    }
+
+    /**
+     * Helpers
+     */
+    
+    public function children()
+    {
+        return $this->attacks();
+    }
+
+    public function getParentIdAttribute()
+    {
+        return $this->tree->id;
+    }
+
+    public function getIsDeletableAttribute()
+    {
+        $children = $this->children;
+        foreach($children as $child)
+        {
+            if ( !$child->is_deletable)
+                return false;
+        }
+        return !$this->locked;
     }
 
 }

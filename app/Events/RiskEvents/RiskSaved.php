@@ -10,16 +10,26 @@ class RiskSaved extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
-    public $Risk;
+    public $risk;
+    public $tree;
+    public $parent;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Risk $Risk)
+    public function __construct(\App\Risk $risk)
     {
-        $this->Risk = $Risk;
+        $this->risk = $risk;
+        $this->tree = [
+            'id' => $risk->tree->id,
+            'public' => $risk->tree->public
+        ];
+        $this->parent = [
+            'type' => 'tree',
+            'id' => $risk->tree->id
+        ];
     }
 
     /**
@@ -31,4 +41,5 @@ class RiskSaved extends Event implements ShouldBroadcast
     {
         return ['argue'];
     }
+
 }

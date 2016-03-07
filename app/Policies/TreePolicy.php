@@ -18,6 +18,11 @@ class TreePolicy
         return $user->id == $tree->user_id;
     }
 
+    public function append($user, $tree)
+    {
+        return $tree->public || ( $user->id == $tree->user_id );
+    }
+
     public function update($user, $tree)
     {
         return $user->id == $tree->user_id;

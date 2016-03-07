@@ -11,8 +11,6 @@ use App\Http\Requests\TreeRequest;
 
 use App\Tree;
 
-use DB;
-
 use JavaScript;
 
 class TreeController extends Controller
@@ -25,7 +23,7 @@ class TreeController extends Controller
     public function index()
     {
         return view('tree.index', [
-            'trees' => Tree::paginate(15)
+            'trees' => Tree::all()
         ]);
     }
 
@@ -49,7 +47,9 @@ class TreeController extends Controller
     {
         $new_tree = Tree::create($request->all());
 
-        return redirect()->route('tree.index')->with('succes','Tree successfully created');
+        $new_tree->syncTags($request->input('tags'));
+        
+        return redirect()->route('tree.show',$new_tree->id)->with('succes','Tree successfully created');
     }
 
     /**
@@ -60,7 +60,7 @@ class TreeController extends Controller
      */
     public function show($tree)
     {
-        return $tree;
+        return view('tree.view')->with('tree',$tree);
     }
 
     /**
@@ -96,13 +96,13 @@ class TreeController extends Controller
      */
     public function update(TreeRequest $request, $tree)
     {        
-        $this->syncCategories($tree, $request->input('categories'));
-
         $this->authorize('update', $tree);
 
         $tree->unlock();
 
         $tree->update($request->all());
+
+        $tree->syncTags($request->input('tags'));
 
         return redirect()->route('tree.index')->with('success','Tree successfully edited');
     }
@@ -118,39 +118,31 @@ class TreeController extends Controller
     {
         $this->authorize('destroy', $tree);
 
-        $tree->delete();
+        if ($tree->delete()) {
 
-        return redirect()->route('tree.index')->with('success','Tree successfully deleted');
-    }
-
-    /**
-     * Category functions
-     */
-    private function syncCategories($tree, $categories)
-    {
-        $slugged = array_map('str_slug', $categories);
-
-        $tree->categories()->sync([]);
-        //For each tag check if it exists, if so, then attach it, if not, create it
-        foreach ($slugged as $key => $value) {
-            if ($value != "") {
-                if (!$category = \App\Category::where('slug','=',str_slug($value))->first())
-                {
-                    $category = \App\Category::create(['title'=>$categories[$key],'slug'=>$value]);
-                }
-                $tree->categories()->attach($category->id);
+            if ($request->ajax())
+            {
+                return response()->json(['message' => 'Tree '.$tree->id.': '.$tree->title.' succesfully deleted'],200);
             }
+    
+            return redirect()->route('tree.index')->with('success','Tree successfully deleted');
+    
         }
 
-        $this->pruneCategories();
+        if ($request->ajax()) {
+            return response()->json(['message'=>'currently in use'],400);
+        }
 
+        return abort(400);
     }
 
-    private function pruneCategories()
+    public function export(Request $request, $tree)
     {
-        $empty_categories = \App\Category::doesntHave('trees')->get(['id'])->pluck('id')->toArray();
-
-        \App\Category::destroy($empty_categories);
+        if ($request->user()->cannot('show',$tree)) {
+            return abort(403);
+        }
+        return view('tree.export')->with([
+            'tree'=>$tree]);
     }
 
     /**

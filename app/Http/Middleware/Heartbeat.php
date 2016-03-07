@@ -11,7 +11,7 @@ class Heartbeat
 
     private $namespace = '\App';
 
-    private $lockable = ['Tree'];
+    private $lockable = ['Tree','Risk','Attack','Defence'];
 
     /**
      * Handle an incoming request.
@@ -24,13 +24,13 @@ class Heartbeat
     {        
         $hearttick = Cache::get('hearttick');
 
-        $time_between_requests = env('HEARTRATE', 15); //in seconds;
+        $time_between_requests = env('HEARTRATE', 29); //in seconds;
 
         if ($hearttick == null || 0 + $hearttick + $time_between_requests < time() )
         {
             if ($request->has('arsec_update_type') && $request->has('arsec_update_id') && in_array($request->input('arsec_update_type'), $this->lockable))
             {
-                $this->updateLock( $request->input('arsec_update_type'), $request->input('arsec_update_id') );
+                $this->updateLock($request->input('arsec_update_type'), $request->input('arsec_update_id') );
             }
 
             array_walk($this->lockable, [$this, 'unlockModel']);
@@ -44,33 +44,41 @@ class Heartbeat
 
     private function updateLock($modelClass, $id)
     {
-        if ( !in_array($modelClass,$this->lockable) )
-            return 1;
-        
-        $modelClass = new \ReflectionClass($this->namespace.'\\'.$modelClass); //TO ADD if in lockable property
+        if ( ! class_exists($this->namespace.'\\'.$modelClass) ) {
+            return response()->json('Tsk tsk tsk', 500);
+        }
 
-        if ( $modelClass->hasMethod('lock') && in_array($request->input('type'), $this->lockable) )
-        {
+        $modelClass = new \ReflectionClass($this->namespace.'\\'.$modelClass);
+
+        if ( $modelClass->hasMethod('lock') )
+        {            
             $modelInstance = $modelClass->newInstance();
             $model = $modelInstance->withoutGlobalScopes()->findOrFail($id);
 
-            if (auth()->user()->can('edit',$model)) // can be replaced with policies and gates
+            if (!auth()->user()->can('edit',$model))
             {
                 return response()->json('Tsk tsk tsk', 403);
             }
 
-            $model->lock();
-            $model->save();
+            if ($model->locked) 
+            {
+                $model->lock();
+                $model->save();
+            }
         }
     }
 
     private function unlockModel($modelClass)
     {
+        if ( ! class_exists($this->namespace.'\\'.$modelClass) ) {
+            return response()->json('Tsk tsk tsk', 500);
+        }
+
         $modelClass = new \ReflectionClass($this->namespace.'\\'.$modelClass);
         if ( $modelClass->hasMethod('unlock') )
         {
             $modelInstance = $modelClass->newInstance();
-            $models = $modelInstance->withoutGlobalScopes()->where('locked','=',1)->where('lock_time','<',time())->get();
+            $models = $modelInstance->withoutGlobalScopes()->where('locked','=',1)->where('lock_time','<',time()-env('HEARTRATE', 29))->get();
 
             foreach ($models as $model) 
             {

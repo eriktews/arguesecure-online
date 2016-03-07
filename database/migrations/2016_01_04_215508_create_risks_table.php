@@ -16,12 +16,17 @@ class CreateRisksTable extends Migration
             $table->increments('id');
 
             $table->string('title');
+
+            $table->string('description');
+            
             $table->text('text');
 
             $table->integer('tree_id')->unsigned()->nullable();
             $table->foreign('tree_id')->references('id')->on('trees')->onDelete('cascade');
 
-            $table->boolean('locked');
+            $table->tinyInteger('locked');
+            
+            $table->bigInteger('lock_time')->unsigned();
 
             $table->timestamps();
 
