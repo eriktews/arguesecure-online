@@ -12,8 +12,7 @@ class UserObserver extends BaseObserver
 
     public function deleting($user)
     {
-        parent::deleting($user);
-
+        
         foreach ($user->trees as $tree)
         {
             $tree->delete();

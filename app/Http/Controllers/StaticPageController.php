@@ -112,10 +112,7 @@ class StaticPageController extends Controller
     {
         if ($request->user()->name != "admin") return redirect()->route('home');
 
-        foreach($user->trees as $tree)
-        {
-            $tree->delete();
-        }
+        $user->delete();
 
         return redirect()->route('superuser.useradmin');
     }
