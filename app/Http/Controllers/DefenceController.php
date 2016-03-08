@@ -103,7 +103,7 @@ class DefenceController extends Controller
         
         $defence->update($request->all());
 
-        $new_defence->syncTags($request->input('tags'));
+        $defence->syncTags($request->input('tags'));
         
         return redirect()->route('tree.show', [$defence->tree->id])->with('success','Defence successfully edited');
     }
