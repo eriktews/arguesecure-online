@@ -55,6 +55,8 @@ class StaticPageController extends Controller
                     'password' => 'required'
                 ]);
 
+                $user['password'] = bcrypt($user['password']);
+
                 if (!$validator->fails()) {
                     \App\User::create($user);
                 }
