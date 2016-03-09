@@ -22,7 +22,7 @@ class SidebarViewComposer
     {
         $sidebar_tags = [];
 
-        if (isset($view->getData()['tree']))
+        if (isset($view->getData()['tree']) && !isset($view->getData()['trees']))
         {
             $sidebar_tags = $view->getData()['tree']->getAllTags();
         }
