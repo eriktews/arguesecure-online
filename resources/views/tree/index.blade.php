@@ -5,7 +5,7 @@
 trees-index-page
 @endsection
 
-@section('title','Trees')
+@section('title','Available assessments')
 
 @section('content')
 
