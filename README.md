@@ -1,10 +1,10 @@
 ## Basic usage
 
-### Installations
+### Installation
 
 There are two ways to install ArgueSecure: (A) build from scratch and (B) delploy a pre-built VM image. The second option is the easiest.
 
-### (A) Installing from scratch:
+#### (A) Installing from scratch:
 1. Install Laravel Homestead: https://laravel.com/docs/master/homestead  
 2. Start up the machine then get the repo: https://github.com/danionita/ArgueSecure.git
 3. run 'composer install' and 'node install' (add --no-bin-links if you are on a windows host) 
@@ -12,7 +12,7 @@ There are two ways to install ArgueSecure: (A) build from scratch and (B) delplo
 6. Start the websocket server and let it run (not a daemon): node ./server/server.js 
 7. Update Help and instructions pages as shown below
 
-### (B) Installing using VM image:
+#### (B) Installing using VM image:
 1. Download VM image: https://surfdrive.surf.nl/files/index.php/s/0C1tM7suCRGJIN0
 2. Deploy VM in virtualization environment of your choice and add the image as HDD.
 3. Open .env (vim ./arguesecure-online/.env) and change WEBSOCKET_IP to whatever the IP of the page will be. Also change APP_DEBUG to false.
@@ -82,4 +82,4 @@ admin user: admin password: XDARSEC
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+The ArgueSecure framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
