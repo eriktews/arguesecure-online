@@ -13,7 +13,7 @@ There are two ways to install ArgueSecure: (A) build from scratch and (B) delplo
 7. Update Help and instructions pages as shown below
 
 ### (B) Installing using VM image:
-1. Download VM:
+1. Download VM image: https://surfdrive.surf.nl/files/index.php/s/0C1tM7suCRGJIN0
 2. Deploy VM in virtualization environment of your choice and add the image as HDD.
 3. Open .env (vim ./arguesecure-online/.env) and change WEBSOCKET_IP to whatever the IP of the page will be. Also change APP_DEBUG to false.
 4. Open config/app.php (vim ./arguesecure-online/config/app.php) and change 'url' => 'http://argue.app' (line 32), to whatever the IP/URL of the page will be.
