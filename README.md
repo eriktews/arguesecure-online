@@ -1,5 +1,7 @@
-##Basic usage
+## Basic usage
+
 ### Installations
+
 There are two ways to install ArgueSecure: (A) build from scratch and (B) delploy a pre-built VM image. The second option is the easiest.
 
 ### (A) Installing from scratch:
@@ -20,44 +22,58 @@ There are two ways to install ArgueSecure: (A) build from scratch and (B) delplo
 7. Update Help and instructions pages as shown below
 
 ### Adding help and instructions:
+
 Edit resources/views/static/help.blade.php
 Edit resources/views/static/instructions.blade.php
 
 ### Adding/removing/exporting users:
+
 To access the administration page, go to: ArgueSecureURL/superuser
 To add a batch of users (from CSV):
 1. Create a CSV with the follwing format (headers are mandatory):
-	name,email,password
-	admin,admin,password
-	TestName,TestName,password
+```
+name,email,password
+user1,user1,password1
+user2,user2,password2
+```
 2. Copy CSV file to /storage/app/users.csv (for example via WinSCP)
 3. Log into web interface as admin user, go to the superuser page (ArgueSecureURL/superuser) and click "create users from csv"
 
 ### Update
-Go to the arguesecure folder: cd ./arguesecure-online
-Get the latest files from GitHub: git pull
+
+Go to the arguesecure folder: ```cd ./arguesecure-online```
+Get the latest files from GitHub: ```git pull```
 
 ### Clear database 
-Run this command: php artisan migrate:refresh
+
+Run this command: ```php artisan migrate:refresh```
 Then, to re-create the admin user: 
-	- php artisan tinker
-	-  \App\User::create(['name'=>'admin','email'=>'admin','password'=>bcrypt('XDARSEC')]);
+```
+php artisan tinker
+\App\User::create(['name'=>'admin','email'=>'admin','password'=>bcrypt('XDARSEC')]);
+```
 
 ## Configuration
+
 ### Defaults:
+
 mysql user: homestead, password: secret
 linux user: vagrant password: vagrant
 Web interface admin user: admin password: XDARSEC
 Websocket port: 3002
 
 ### CHANGING WEB INTERFACE ADMIN PASSWORD:
+
 1. log into mysql
 2. encrypt your new password with bycrypt
 3. Update users table accordingly
 
 ### CHANGING DEFAULT PORT (3002):
+
+```
 .env: change WEBSOCKET_PORT
 ./server/server.js:  change default port
+```
 
 
 ### License
