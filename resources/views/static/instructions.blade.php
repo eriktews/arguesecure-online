@@ -29,6 +29,10 @@ instructions-page layout-full
 					<li>Instruction 6</li>
 					<li>Instruction 7</li>
 				</ul>
+
+				@if (Session::get('after_login'))
+				<a href="{{route('home')}}">Continue</a>
+				@endif
                 
             </div>
         </div>
