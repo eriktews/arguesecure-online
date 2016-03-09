@@ -1,26 +1,64 @@
-## Laravel PHP Framework
+##Basic usage
+### Installations
+There are two ways to install ArgueSecure: (A) build from scratch and (B) delploy a pre-built VM image. The second option is the easiest.
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+### (A) Installing from scratch:
+1. Install Laravel Homestead: https://laravel.com/docs/master/homestead  
+2. Start up the machine then get the repo: https://github.com/danionita/ArgueSecure.git
+3. run 'composer install' and 'node install' (add --no-bin-links if you are on a windows host) 
+4. run 'php artisan migrate'
+6. Start the websocket server and let it run (not a daemon): node ./server/server.js 
+7. Update Help and instructions pages as shown below
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+### (B)Installing using VM image:
+1. Download VM:
+2. Deploy VM in virtualization environment of your choice and add the image as HDD.
+3. Open .env (vim ./arguesecure-online/.env) and change WEBSOCKET_IP to whatever the IP of the page will be. Also change APP_DEBUG to false.
+4. Open config/app.php (vim ./arguesecure-online/config/app.php) and change 'url' => 'http://argue.app' (line 32), to whatever the IP/URL of the page will be.
+5. Set up port forwarding on port 80 and 3002 (if not changed, as shown below)
+6. Start the websocket server and let it run (not a daemon): node ./server/server.js 
+7. Update Help and instructions pages as shown below
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+### Adding help and instructions:
+Edit resources/views/static/help.blade.php
+Edit resources/views/static/instructions.blade.php
 
-## Official Documentation
+### Adding/removing/exporting users:
+To access the administration page, go to: ArgueSecureURL/superuser
+To add a batch of users (from CSV):
+1. Create a CSV with the follwing format (headers are mandatory):
+	name,email,password
+	admin,admin,password
+	TestName,TestName,password
+2. Copy CSV file to /storage/app/users.csv (for example via WinSCP)
+3. Log into web interface as admin user, go to the superuser page (ArgueSecureURL/superuser) and click "create users from csv"
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+### Update
+Go to the arguesecure folder: cd ./arguesecure-online
+Get the latest files from GitHub: git pull
 
-## Contributing
+### Clear database 
+Run this command: php artisan migrate:refresh
+Then, to re-create the admin user: 
+	- php artisan tinker
+	-  \App\User::create(['name'=>'admin','email'=>'admin','password'=>bcrypt('XDARSEC')]);
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## Configuration
+### Defaults:
+mysql user: homestead, password: secret
+linux user: vagrant password: vagrant
+Web interface admin user: admin password: XDARSEC
+Websocket port: 3002
 
-## Security Vulnerabilities
+### CHANGING WEB INTERFACE ADMIN PASSWORD:
+1. log into mysql
+2. encrypt your new password with bycrypt
+3. Update users table accordingly
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+### CHANGING DEFAULT PORT (3002):
+.env: change WEBSOCKET_PORT
+./server/server.js:  change default port
+
 
 ### License
 
