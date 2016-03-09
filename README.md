@@ -29,12 +29,13 @@ Edit resources/views/static/instructions.blade.php
 ### Adding/removing/exporting users:
 
 To access the administration page, go to: ArgueSecureURL/superuser  
-To add a batch of users (from CSV):  
-1. Create a CSV with the follwing format (headers are mandatory):  
+To add a batch of users (from CSV):
 
-    name,email,password
-    user1,user1,password1
-    user2,user2,password2
+1. Create a CSV with the follwing format (headers are mandatory):   
+
+         name,email,password   
+         user1,user1,password1   
+         user2,user2,password2  
 2. Copy CSV file to /storage/app/users.csv (for example via WinSCP)   
 3. Log into web interface as admin user, go to the superuser page (ArgueSecureURL/superuser) and click "create users from csv"   
 
