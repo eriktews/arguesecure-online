@@ -12,7 +12,7 @@ There are two ways to install ArgueSecure: (A) build from scratch and (B) delplo
 6. Start the websocket server and let it run (not a daemon): node ./server/server.js 
 7. Update Help and instructions pages as shown below
 
-### (B)Installing using VM image:
+### (B) Installing using VM image:
 1. Download VM:
 2. Deploy VM in virtualization environment of your choice and add the image as HDD.
 3. Open .env (vim ./arguesecure-online/.env) and change WEBSOCKET_IP to whatever the IP of the page will be. Also change APP_DEBUG to false.
@@ -23,21 +23,20 @@ There are two ways to install ArgueSecure: (A) build from scratch and (B) delplo
 
 ### Adding help and instructions:
 
-Edit resources/views/static/help.blade.php
-Edit resources/views/static/instructions.blade.php
+Edit resources/views/static/help.blade.php   
+Edit resources/views/static/instructions.blade.php  
 
 ### Adding/removing/exporting users:
 
-To access the administration page, go to: ArgueSecureURL/superuser
-To add a batch of users (from CSV):
-1. Create a CSV with the follwing format (headers are mandatory):
-  ```
-  name,email,password
-  user1,user1,password1
-  user2,user2,password2
-  ```
-2. Copy CSV file to /storage/app/users.csv (for example via WinSCP)
-3. Log into web interface as admin user, go to the superuser page (ArgueSecureURL/superuser) and click "create users from csv"
+To access the administration page, go to: ArgueSecureURL/superuser  
+To add a batch of users (from CSV):  
+1. Create a CSV with the follwing format (headers are mandatory):  
+
+    name,email,password
+    user1,user1,password1
+    user2,user2,password2
+2. Copy CSV file to /storage/app/users.csv (for example via WinSCP)   
+3. Log into web interface as admin user, go to the superuser page (ArgueSecureURL/superuser) and click "create users from csv"   
 
 ### Update
 
@@ -57,18 +56,22 @@ php artisan tinker
 
 ### Defaults:
 
-mysql user: homestead, password: secret
-linux user: vagrant password: vagrant
-Web interface admin user: admin password: XDARSEC
-Websocket port: 3002
+##### mysql user
+user: homestead, password: secret  
+##### linux user
+user: vagrant password: vagrant  
+##### Web interface superuser
+admin user: admin password: XDARSEC  
+##### Websocket port
+3002  
 
-### CHANGING WEB INTERFACE ADMIN PASSWORD:
+### Change web interface superuser:
 
 1. log into mysql
 2. encrypt your new password with bycrypt
-3. Update users table accordingly
+3. Update users.admin password field
 
-### CHANGING DEFAULT PORT (3002):
+### Change default port:
 
 ```
 .env: change WEBSOCKET_PORT
@@ -76,6 +79,6 @@ Websocket port: 3002
 ```
 
 
-### License
+## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
