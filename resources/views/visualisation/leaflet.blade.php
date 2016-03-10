@@ -29,7 +29,7 @@
 			    @if(TreeNode::get($node,'type') != "tree")
 				    @can ('destroy', $node)
 					<li class="argue-node-action">
-						{!! Form::open(['route'=>[TreeNode::get($node,'route').'.destroy',$node->parent_id, $node->id], 'method'=>'delete', 'class'=>'argue-node-action-delete-form', 'data-type'=> TreeNode::get($node,'type'), 'data-id'=>$node->id]) !!}
+						{!! Form::open(['method'=>'delete', 'class'=>'argue-node-action-delete-form', 'data-type'=> TreeNode::get($node,'type'), 'data-id'=>$node->id]) !!}
 						<button type="submit" class="argue-node-action argue-node-action-destroy btn btn-icon btn-outline btn-danger tooltip-danger" data-toggle="tooltip" data-placement="top" title="Delete {{ucfirst(TreeNode::get($node,'name'))}}">
 							<i class="fa fa-trash" aria-hidden="true"></i>
 						</button>
