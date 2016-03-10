@@ -30,6 +30,16 @@
 }
 
 /**
+ * Tree index title fix
+ */
+
+.trees-index-page .argue-tree-container .panel-title a {
+  display: block;
+  word-break: break-all;
+  max-width: calc(100% - 240px);
+}
+
+/**
  * Instructions page
  */
 
