@@ -10,7 +10,7 @@ class Defence extends Node
 
     public $tempAttacks = null;
     
-    protected $fillable = ['title','description', 'text', 'tree_id'];
+    protected $fillable = ['title','description', 'text', 'tree_id', 'is_transfer'];
 
     /**
      * Relationships

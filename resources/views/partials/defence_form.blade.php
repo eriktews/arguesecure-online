@@ -14,6 +14,12 @@
 </div>
 
 <div class="form-group form-material">
+  	<label class="control-label" for="is_transfer">Is Transfer</label>
+	{!! Form::hidden('is_transfer', 0) !!}
+ 	{!! Form::checkbox('is_transfer', 1, null, ['id'=>'is_transfer','data-plugin'=>'switchery']) !!}
+</div>
+
+<div class="form-group form-material">
   	<label class="control-label" for="defence-attacks">Defends Against</label>
   	{!! Form::select('attacks[]', $attack->tree->attacks->pluck('title','id')->toArray(), array_unique(array_merge($defence->attacks->pluck('id')->toArray(), [$attack->id])), ['class'=>'form-control', 'id'=>"defence-attacks", 'data-plugin'=>'select2', 'multiple']) !!}
 </div>

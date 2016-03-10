@@ -30,5 +30,13 @@ return [
     	'route' => 'defence',
     	'type' => 'defence',
         'name' => 'Defence'
+    ],
+    'Transfer' => [
+        'parent' => 'Attack',
+        'icon' => 'icon-arrow-right',
+        'route' => 'defence',
+        'type' => 'defence',
+        'name' => 'Transfer'
     ]
+
 ];

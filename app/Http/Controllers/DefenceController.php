@@ -100,7 +100,7 @@ class DefenceController extends Controller
         $defence->unlock();
 
         $defence->attacks()->sync($request->input('attacks'));
-        
+
         $defence->update($request->all());
 
         $defence->syncTags($request->input('tags'));
