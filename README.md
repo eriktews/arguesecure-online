@@ -7,18 +7,18 @@ There are two ways to install ArgueSecure: (A) build from scratch and (B) delplo
 #### (A) Installing from scratch:
 1. Install Laravel Homestead: https://laravel.com/docs/master/homestead  
 2. Start up the machine then get the repo: https://github.com/danionita/ArgueSecure.git
-3. run 'composer install' and 'node install' (add --no-bin-links if you are on a windows host) 
-4. run 'php artisan migrate'
-6. Start the websocket server and let it run (not a daemon): node ./server/server.js 
+3. run  ```composer install ``` and  ```node install ``` (add --no-bin-links if you are on a windows host) 
+4. run  ```php artisan migrate ```
+6. Start the websocket server:  ```nohup node arguesecure-online/server/server.js >/dev/null 2>&1 & ```
 7. Update Help and instructions pages as shown below
 
 #### (B) Installing using VM image:
 1. Download VM image: https://surfdrive.surf.nl/files/index.php/s/0C1tM7suCRGJIN0
 2. Deploy VM in virtualization environment of your choice and add the image as HDD.
-3. Open .env (vim ./arguesecure-online/.env) and change WEBSOCKET_IP to whatever the IP of the page will be. Also change APP_DEBUG to false.
-4. Open config/app.php (vim ./arguesecure-online/config/app.php) and change 'url' => 'http://argue.app' (line 32), to whatever the IP/URL of the page will be.
+3. Open .env ( ```vim ./arguesecure-online/.env ```) and change WEBSOCKET_IP to whatever the IP of the page will be. Also change APP_DEBUG to false.
+4. Open config/app.php ( ```vim ./arguesecure-online/config/app.php ```) and change 'url' => 'http://argue.app' (line 32), to whatever the IP/URL of the page will be.
 5. Set up port forwarding on port 80 and 3002 (if not changed, as shown below)
-6. Start the websocket server and let it run (not a daemon): node ./server/server.js 
+6. Start the websocket server:  ```nohup node arguesecure-online/server/server.js >/dev/null 2>&1 & ```
 7. Update Help and instructions pages as shown below
 
 ### Adding help and instructions:
