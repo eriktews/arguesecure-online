@@ -73,7 +73,9 @@
 	  			@endif
 	  			<i class="argue-node-action-toggle argue-node-toggle tooltip-dark fa fa-wrench" data-toggle="tooltip" data-placement="top" title="Show Actions"></i>
 	  		</div>
+	  		@if($node->updatedBy)
 	  		<div class="node-last-updated">Last updated by: {{$node->updatedBy->name}}</div>
+	  		@endif
 	  	</div>
 	  	@if ( $node->locked && (auth()->user()->id != $node->updated_by) )
         <div class="node-lock"></div>
