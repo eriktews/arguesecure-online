@@ -246,14 +246,14 @@ $children-hover-color: #e4eaec;
   .argue-node-icon {
     display: block;
     opacity: 0.95;
-    font-size: 10px;
+    font-size: 20px;
     position: absolute;
     top: 5px;
     left: 5px;
   }
 
   .argue-node-toggle {
-    opacity: 0.1;
+    opacity: 0.4;
     transition: 0.3s ease-in-out 0s;
     &:hover {
       opacity: 1;
@@ -270,9 +270,9 @@ $children-hover-color: #e4eaec;
   .argue-node-collapse-toggle {
     position: absolute;
     top: 5px;
-    font-size: 10px;
+    font-size: 13px;
     right: 10px;
-    opacity: 0.1;
+    opacity: 0.4;
   }
 
   .panel-actions {
@@ -290,7 +290,7 @@ $children-hover-color: #e4eaec;
     h5 {
       margin-bottom: 0px;
     }
-    .node-description-wrapper,
+    // .node-description-wrapper,
     .node-notes-wrapper {
       display: none;
     }

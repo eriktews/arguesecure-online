@@ -1,4 +1,4 @@
-	<div class="panel argue-tree-vis-leaf argue-{{TreeNode::get($node,'type')}}" data-type="{{TreeNode::get($node,'type')}}" data-{{TreeNode::get($node,'type')}}-id="{{$node->id}}">
+	<div class="panel argue-tree-vis-leaf argue-{{TreeNode::get($node,'type')}} argue-node-description-open" data-type="{{TreeNode::get($node,'type')}}" data-{{TreeNode::get($node,'type')}}-id="{{$node->id}}">
 		<div class="panel-heading">
 			<h3 class="panel-title node-title">
 				@if (!$node->children->isEmpty())
@@ -66,12 +66,12 @@
 	  	<div class="panel-footer argue-node-footer">
 	  		<div class="argue-node-action-wrapper">
 				@if(!empty($node->description))
-		  			<i class="argue-node-description-toggle argue-node-toggle tooltip-dark fa fa-sticky-note" data-toggle="tooltip" data-placement="top" title="Show Description"></i>
+		  			<i class="argue-node-description-toggle argue-node-toggle tooltip-dark fa fa-sticky-note" data-toggle="tooltip" data-placement="top" title="Show/Hide Description"></i>
 	  			@endif
 	  			@if(!empty($node->text))
-		  			<i class="argue-node-notes-toggle argue-node-toggle tooltip-dark fa fa-book" data-toggle="tooltip" data-placement="top" title="Show Notes"></i>
+		  			<i class="argue-node-notes-toggle argue-node-toggle tooltip-dark fa fa-book" data-toggle="tooltip" data-placement="top" title="Show/Hide Notes"></i>
 	  			@endif
-	  			<i class="argue-node-action-toggle argue-node-toggle tooltip-dark fa fa-wrench" data-toggle="tooltip" data-placement="top" title="Show Actions"></i>
+	  			<i class="argue-node-action-toggle argue-node-toggle tooltip-dark fa fa-wrench" data-toggle="tooltip" data-placement="top" title="Show/Hide Actions"></i>
 	  		</div>
 	  		@if($node->updatedBy)
 	  		<div class="node-last-updated">Last updated by: {{$node->updatedBy->name}}</div>
