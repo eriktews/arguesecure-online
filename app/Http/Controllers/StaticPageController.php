@@ -15,6 +15,8 @@ use Validator;
 
 use PDF;
 
+use Hash;
+
 class StaticPageController extends Controller
 {
     public function help()
@@ -34,6 +36,45 @@ class StaticPageController extends Controller
     	if ($request->user()->name != "admin") return redirect()->route('home');
 
     	return view('static.superuser');
+    }
+
+    public function changepassword(Request $request)
+    {
+        if ($request->user()->name != "admin") return redirect()->route('home');
+
+        return view('static.changepassword');
+    }
+
+    public function adminpassword(Request $request)
+    {
+        if ($request->user()->name != "admin") return redirect()->route('home');
+
+        return view('static.adminpasswordform');
+    }
+
+    public function setadminpassword(Request $request)
+    {
+        if ($request->user()->name != "admin") return redirect()->route('home');
+
+        $currentPassword = $request->input('current_password');
+        $newPassword = $request->input('new_password');
+        $confirmPassword = $request->input('confirm_password');
+
+        if (!Hash::check($currentPassword,$request->user()->password)) {
+            return view('static.adminpasswordform')->withErrors(['Password is invalid']);
+        }
+
+        if (!$newPassword || strlen($newPassword) < 4)
+            return view('static.adminpasswordform')->withErrors(['Password must be at least 4 letters long']);
+
+        if ($newPassword != $confirmPassword)
+            return view('static.adminpasswordform')->withErrors(['New password and Confirm password must match']);
+
+        $request->user()->password = Hash::make($newPassword);
+        $request->user()->save();
+        
+        return redirect()->route('superuser');            
+
     }
 
     public function csvusercreate(Request $request)

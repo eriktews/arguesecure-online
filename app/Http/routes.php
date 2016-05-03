@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth', 'heartbeat']], function () {
     Route::get('/superuser', ['as' => 'superuser', 'uses' => 'StaticPageController@superuser']);
     Route::get('/superuser/pdfsheet', ['as' => 'superuser.pdfsheet', 'uses' => 'StaticPageController@pdfsheet']);
     Route::get('/superuser/csvuser', ['as' => 'superuser.csvuser', 'uses' => 'StaticPageController@csvusercreate']);
+    Route::get('/superuser/adminpassword', ['as' => 'superuser.adminpassword', 'uses' => 'StaticPageController@adminpassword']);
+    Route::post('/superuser/adminpassword', ['as' => 'superuser.setadminpassword', 'uses' => 'StaticPageController@setadminpassword']);
     Route::get('/superuser/useradmin', ['as' => 'superuser.useradmin', 'uses' => 'StaticPageController@useradmin']);
     Route::post('/superuser/useradmin/createuser', ['as' => 'superuser.useradmin.create', 'uses' => 'StaticPageController@createUser']);
     Route::delete('/superuser/useradmin/{user}/deleteuser', ['as' => 'superuser.useradmin.delete', 'uses' => 'StaticPageController@deleteUser']);

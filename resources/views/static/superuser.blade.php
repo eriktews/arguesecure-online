@@ -24,6 +24,7 @@ instructions-page layout-full
 					<li><a href="{{route('superuser.useradmin')}}">View user list</a></li>
                     <li><a href="{{route('superuser.csvuser')}}">Add users from CSV</a></li>
                     <li><a href="{{route('superuser.pdfsheet')}}">Print PDF from CSV</a></li>
+                    <li><a href="{{route('superuser.adminpassword')}}">Change admin password</a></li>
 				</ul>
                 
             </div>
