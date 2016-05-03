@@ -67,11 +67,6 @@ class Node extends Model
 
         $result = $this->tags()->sync($ids, $detaching);
 
-        foreach ($this->children as $child)
-        {
-            $child->syncTags($tags, $detaching);
-        }
-
         $this->pruneTags();
 
         return $result;

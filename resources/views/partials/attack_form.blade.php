@@ -15,5 +15,5 @@
 
 <div class="form-group form-material">
   	<label class="control-label" for="attack-tags">Tags</label>
-  	{!! Form::select('tags[]', $risk->tree->all_tags->pluck('title','slug')->toArray(), $attack->tags->pluck('slug')->toArray(), ['class'=>'form-control', 'id'=>"attack-tags", 'data-plugin'=>'select2', 'data-select2-tags'=>'true', 'multiple']) !!}
+  	{!! Form::select('tags[]', $risk->tree->all_tags->pluck('title','slug')->toArray(), ($attack->risk ? $attack->tags->pluck('slug')->toArray() : $risk->tags->pluck('slug')->toArray()), ['class'=>'form-control', 'id'=>"attack-tags", 'data-plugin'=>'select2', 'data-select2-tags'=>'true', 'multiple']) !!}
 </div>
