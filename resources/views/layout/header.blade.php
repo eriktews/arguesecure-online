@@ -20,7 +20,7 @@
     <ul class="nav navbar-toolbar">
       <li class="hidden-float" id="toggleMenubar">
         <a data-toggle="menubar" href="#" role="button">
-          <i class="icon hamburger hamburger-arrow-left hided unfolded">
+          <i class="icon hamburger hided unfolded">
               <span class="sr-only">Toggle menubar</span>
               <span class="hamburger-bar"></span>
             </i>

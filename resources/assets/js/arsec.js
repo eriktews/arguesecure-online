@@ -338,6 +338,12 @@ $('.argue-tree-vis').on('click', '.argue-node-action-toggle', function(event) {
 	event.stopPropagation();
 });
 
+$('.tree-actions #collapse-tree').click(function(event) {
+	$('.argue-leaf-wrapper').each(function() {
+		collapseNode(event, this);
+	});
+});
+
 $('.argue-tree-vis').on('click', '.argue-node-collapse-toggle', function(event) {collapseNode(event, this)});
 $('.argue-tree-vis').on('dblclick', '.argue-tree-vis-leaf', function(event) {collapseNode(event, this)});
 

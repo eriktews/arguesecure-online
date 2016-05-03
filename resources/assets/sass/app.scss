@@ -404,6 +404,12 @@ $children-hover-color: #e4eaec;
   }
 }
 
+.site-menubar-footer {
+  .tree-actions {
+    text-align: center;
+  }
+}
+
 .site-menu-item-custom.empty-tag {
   display: none !important;
 }
@@ -428,6 +434,36 @@ $children-hover-color: #e4eaec;
 .site-menu-item-custom-selected {
   background: #1c252a;
 }
+
+/**
+ * Collapse
+ */
+
+ .page,
+ .site-footer,
+ .site-navbar .navbar-container {
+  transition: margin-left .2s ease-in-out;
+ }
+
+ .site-menubar-fold .site-menubar,
+ .site-menubar-fold .site-menubar-footer,
+ .site-menubar-fold .site-navbar .navbar-header {
+  width: 10px;
+ }
+
+ .site-menubar-fold .page,
+ .site-menubar-fold .site-footer,
+ .site-menubar-fold .site-navbar .navbar-container {
+  margin-left: 10px;
+ }
+
+ .site-menubar-fold .site-menubar-footer .tree-actions > a {
+  display: none;
+ }
+
+ .site-menubar-fold .site-menu {
+  display: none;
+ }
 
 /**
  * PDF

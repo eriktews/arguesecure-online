@@ -36,6 +36,11 @@
     </div>
   </div>
   <div class="site-menubar-footer">
+    @if (isset($tree))
+    <div class="tree-actions">
+      <a href="#" id="collapse-tree">Collapse/Expand all nodes</a>
+    </div>
+    @endif
     <a href="{{route('logout')}}" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
       <span class="icon wb-power" aria-hidden="true"></span>
     </a>
