@@ -26,7 +26,7 @@
 
 <div class="form-group form-material">
   	<label class="control-label" for="defence-tags">Tags</label>
-  	{!! Form::select('tags[]', \App\Tag::all()->pluck('title','slug')->toArray(), $defence->tags->pluck('slug')->toArray(), ['class'=>'form-control', 'id'=>"defence-tags", 'data-plugin'=>'select2', 'data-select2-tags'=>'true', 'multiple']) !!}
+  	{!! Form::select('tags[]', $attack->tree->all_tags->pluck('title','slug')->toArray(), $defence->tags->pluck('slug')->toArray(), ['class'=>'form-control', 'id'=>"defence-tags", 'data-plugin'=>'select2', 'data-select2-tags'=>'true', 'multiple']) !!}
 </div>
 
 {!!Form::hidden('tree',$attack->tree->id)!!}
