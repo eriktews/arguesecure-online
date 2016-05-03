@@ -9,18 +9,24 @@
   <title>Argue Secure - Export</title>
 </head>
 <body>
-{{$tree->title}}  
+<p>{{$tree->title}}</p>
+<p>{{$tree->description}}</p>
 <ul>
 	@foreach($tree->risks as $risk)
 	<li>
-		{{$risk->title}}
+		<p>{{$risk->title}}</p>
+		<p>{{$risk->description}}</p>
 		<ul>
 			@foreach($risk->attacks as $attack)
 			<li>
-				{{$risk->title}}
+				<p>{{$attack->title}}</p>
+				<p>{{$attack->description}}</p>
 				<ul>
 				@foreach($attack->defences as $defence)
-					<li>{{$defence->title}}</li>
+					<li>
+						<p>{{$defence->title}}</p>
+						<p>{{$attack->description}}</p>
+					</li>
 				@endforeach
 				</ul>
 			</li>
