@@ -77,7 +77,7 @@ class AttackController extends Controller
                 ]
             ]);
 
-        return view('attack.edit')->with('attack',$attack);
+        return view('attack.edit')->with('attack',$attack)->with('risk',$risk);
     }
 
     /**
