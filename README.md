@@ -68,9 +68,9 @@ admin user: admin password: XDARSEC
 
 ### Change web interface superuser:
 
-1. log into mysql
-2. encrypt your new password with bycrypt
-3. Update users.admin password field
+1. Log in with administrator account
+2. Access administration interface
+2. Click "change admin password"
 
 ### Change default port:
 
