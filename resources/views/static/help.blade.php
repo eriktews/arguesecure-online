@@ -15,7 +15,7 @@ help-page
 	</div>
 	<div class="panel-body argue-tree-description">
 		ArgueSecure is a ditributed risk assessment platform with real-time collaboration functionality.<br>
-		The platform allows users to collaboratively or privately build and maintain structured lists of risks and mitigations for softwre and/or systems.
+		The platform allows users to collaboratively or privately build and maintain structured lists of risks and mitigations for software and/or systems.
 		Each risk assessment (i.e. each list of risks and mitigations) follows a fixed, tree-like structure:
 		<ul>
 			<li>Risk 1</li>
@@ -34,7 +34,7 @@ help-page
 			<li>Risk 2</li>
 			<li>Etc.</li>
 		</ul>
-		Defences refer to components or architectural decisions that reduce a risk; transfers refer to decisions, disclaimers, or policies that shift the risk or potential loss to another party through a contract (e.g., a hold harmless clause) or to a professional risk bearer (i.e., an insurance company)(e.g. to an insurance company or to a customer). 
+		Defences refer to components or architectural decisions that reduce a risk; transfers refer to decisions, disclaimers, or policies that shift the risk or potential loss to another party through a contract (e.g., a hold harmless clause) or to a professional risk bearer (e.g. to an insurance company). 
 	</div>
 	<div class="panel-footer">
 		<div>
