@@ -73,10 +73,10 @@ help-page
 
 <div class="panel panel-bordered argue-tree">
 	<div class="panel-heading">
-		<h3 class="panel-title">REFSQ2016 online study</h3>
+		<h3 class="panel-title">Instructions</h3>
 	</div>
 	<div class="panel-footer">
-            <a href={{route('instructions')}} target="_blank">Click here to read the REFSQ experiment instructions again</a>
+            <a href={{route('instructions')}} target="_blank">Click here to read the instructions again</a>
         </div>
 	
 </div>
