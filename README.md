@@ -7,7 +7,7 @@ There are two ways to install ArgueSecure: (A) build from scratch and (B) delplo
 #### (A) Installing from scratch:
 1. Install Laravel Homestead: https://laravel.com/docs/master/homestead  
 2. Start up the machine then get the repo: https://github.com/danionita/ArgueSecure.git
-3. run  ```composer install ``` and  ```npm install ``` (add --no-bin-links if you are on a windows host) 
+3. run  ```composer install ``` and  ```node install ``` (add --no-bin-links if you are on a windows host) 
 4. run  ```php artisan migrate ```
 6. Start the websocket server:  ```nohup node arguesecure-online/server/server.js >/dev/null 2>&1 & ```
 7. Update Help and instructions pages as shown below
