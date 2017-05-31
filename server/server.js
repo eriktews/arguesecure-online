@@ -15,7 +15,7 @@ io.on('connection', function (socket) {
 
   console.log("new client connected");
 
-  var redis = new Redis();
+  var redis = new Redis({host: process.env.REDIS_HOST || '127.0.0.1'});
   redis.subscribe(redis_channel);
  
   redis.on("message", function(channel, message) {
